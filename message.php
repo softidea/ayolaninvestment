@@ -7,6 +7,8 @@ if ($msg == "activation_failure") {
     $message = '<h2>Activation Success</h2> Your account is now activated. <a href="login.php">Click here to log in</a>';
 } else {
     $message = $msg;
+    //test baby
+//    rehtejttjy
 }
 ?>
 <div><?php echo $message; ?></div>
