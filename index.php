@@ -4,16 +4,13 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <link rel="stylesheet" href="assets/css/login.css">
         <?php include './assets/include/head.php'; ?>
-
 
         <meta charset="utf-8">
         <title>User | Login</title>
 
         <link rel="icon" href="favicon.ico">
-
         <script type="text/javascript">
             function setregpanel()
             {
@@ -24,7 +21,7 @@ session_start();
                     document.getElementsById('panelloginusers').style.display = "none";
                 }
             }
-            document.onkeydown = function (e) {
+            document.onkeydown = function(e) {
                 if (e.ctrlKey &&
                         (e.keyCode === 67 ||
                                 e.keyCode === 86 ||

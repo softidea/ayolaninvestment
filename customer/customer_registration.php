@@ -133,7 +133,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function () {
+                    xmlhttp.onreadystatechange = function() {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             document.getElementById("v_type").innerHTML = xmlhttp.responseText;
                         }
@@ -158,7 +158,7 @@ if (!isset($_SESSION['user_email'])) {
                         // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function () {
+                    xmlhttp.onreadystatechange = function() {
                         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                             if (xmlhttp.responseText === "No Interest Found,Try Again") {
                                 alert(xmlhttp.responseText);
@@ -185,7 +185,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function () {
+                    xmlhttp.onreadystatechange = function() {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             document.getElementById("v_code").innerHTML = xmlhttp.responseText;
                         }
@@ -203,7 +203,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function () {
+                    xmlhttp.onreadystatechange = function() {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             document.getElementById("v_code").innerHTML = xmlhttp.responseText;
                         }
@@ -226,7 +226,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function () {
+                    xmlhttp.onreadystatechange = function() {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             alert(xmlhttp.responseText);
                             var value = xmlhttp.responseText;
@@ -256,7 +256,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function () {
+                    xmlhttp.onreadystatechange = function() {
                         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                             alert(xmlhttp.responseText);
                             document.getElementById('l_rate').value = xmlhttp.responseText;
@@ -288,7 +288,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function () {
+                    xmlhttp.onreadystatechange = function() {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             document.getElementById('v_code').innerHTML = xmlhttp.responseText;
                         }
@@ -318,7 +318,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function () {
+                    xmlhttp.onreadystatechange = function() {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             alert(xmlhttp.responseText);
                             document.getElementById('ser_installment').value = xmlhttp.responseText;
@@ -997,7 +997,6 @@ if (!isset($_SESSION['user_email'])) {
                     document.getElementById('msg_caption').style.color = "black";
                     gotosecond();
                 } else {
-                    gotosecond();
                     document.getElementById('msg_caption').style.color = "red";
                     alert("Empty Data Fields Found,Please Insert Valid Data");
                 }
