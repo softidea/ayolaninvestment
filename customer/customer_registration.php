@@ -397,7 +397,7 @@ if (!isset($_SESSION['user_email'])) {
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label" >Have any Dependencies:</label>
-                                            <input type="number" id="cus_depend" min="0" max="20" name="cus_dependdency" value="<?php echo $cus_dependdency; ?>" placeholder="Have any Dependencies"  class="form-control" maxlength="2" readonly/>
+                                            <input type="number" id="cus_depend" min="0" max="20" name="cus_dependdency" value="0" placeholder="Have any Dependencies"  class="form-control" maxlength="2" readonly/>
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label" >Employment/Position:</label>
@@ -500,7 +500,7 @@ if (!isset($_SESSION['user_email'])) {
 
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Have any Dependencies:</label>
-                                            <input type="number" id="g_depend" min="0" max="20" name="gua_dependency" value="<?php echo $gua_dependency; ?>" placeholder="Have any Dependencies" class="form-control" readonly/>
+                                            <input type="number" id="g_depend" min="0" max="20" name="gua_dependency" value="0" placeholder="Have any Dependencies" class="form-control" readonly/>
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Employment/Position:</label>
@@ -751,6 +751,7 @@ if (!isset($_SESSION['user_email'])) {
                                             <div class="form-group required">
                                                 <label class="control-label">Select Period:</label>
                                                 <select name="cbo_loan_duration" id="setServiceInstallment" class="form-control" onchange="setSerInstallment();">
+                                                    <option value="0">~~Select Period~~</option>
                                                     <option value="6">6 Months</option>
                                                     <option value="12">1 Year</option>
                                                     <option value="18">1.5 Years</option>
@@ -891,12 +892,12 @@ if (!isset($_SESSION['user_email'])) {
                                                 }
                                                 function setCusDependancy() {
                                                     if (document.getElementById('c_m_status').value == "Single") {
-                                                        alert("Single");
+                                                        //alert("Single");
                                                         document.getElementById('cus_depend').value = "0";
                                                         document.getElementById('cus_depend').readOnly = true;
                                                     }
                                                     else if (document.getElementById('c_m_status').value == "Married") {
-                                                        alert("Married");
+                                                       // alert("Married");
                                                         document.getElementById('cus_depend').value = "0";
                                                         document.getElementById('cus_depend').readOnly = false;
                                                     }
