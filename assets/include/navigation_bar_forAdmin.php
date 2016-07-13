@@ -19,7 +19,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo ('../../customer/customer_registration.php'); ?>" style="text-decoration: none;">New Registration</a></li>
-                            <li><a href="<?php echo ('../../customer/customer_view.php'); ?>" style="text-decoration: none;">Update Customer</a></li>
+                            <li><a href="<?php echo ('../../customer/customer_updateinfo'); ?>" style="text-decoration: none;">Update Customer</a></li>
                             <li><a href="<?php echo ('../../customer/customer_view.php'); ?>" style="text-decoration: none;">View Customers</a></li>
                             <li><a href="<?php echo ('../../customer/customer_installment.php'); ?>" style="text-decoration: none;">Pay Installment</a></li>
                             <li><a href="<?php echo ('../../customer/customer_tieup.php'); ?>" style="text-decoration: none;">Customer Tie-Up</a></li>

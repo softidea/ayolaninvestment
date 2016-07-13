@@ -133,7 +133,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             document.getElementById("v_type").innerHTML = xmlhttp.responseText;
                         }
@@ -158,7 +158,7 @@ if (!isset($_SESSION['user_email'])) {
                         // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                             if (xmlhttp.responseText === "No Interest Found,Try Again") {
                                 alert(xmlhttp.responseText);
@@ -185,7 +185,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             document.getElementById("v_code").innerHTML = xmlhttp.responseText;
                         }
@@ -203,7 +203,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             document.getElementById("v_code").innerHTML = xmlhttp.responseText;
                         }
@@ -226,7 +226,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             alert(xmlhttp.responseText);
                             var value = xmlhttp.responseText;
@@ -256,7 +256,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                             alert(xmlhttp.responseText);
                             document.getElementById('l_rate').value = xmlhttp.responseText;
@@ -288,7 +288,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             document.getElementById('v_code').innerHTML = xmlhttp.responseText;
                         }
@@ -318,7 +318,7 @@ if (!isset($_SESSION['user_email'])) {
                     } else { // code for IE6, IE5
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             alert(xmlhttp.responseText);
                             document.getElementById('ser_installment').value = xmlhttp.responseText;
@@ -381,15 +381,16 @@ if (!isset($_SESSION['user_email'])) {
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label" >NIC Number:</label>
-                                            <input type="text" id="cus_nic" name="cus_nic" maxlength="10" value="<?php echo $cus_nic; ?>" placeholder="NIC Number"  class="form-control" maxlength="15"/>
+                                            <input type="text" id="cus_nic" name="cus_nic" maxlength="10" value="<?php echo $cus_nic; ?>" placeholder="NIC Number"  class="form-control" maxlength="15" style="text-transform: uppercase;"/>
                                         </div>
                                         <div class="form-group  ">
-                                            <span style="color:red;">*</span><label class="control-label" >Date of Birth:</label>
+                                            <span style="color:red;">*</span><label class="control-label" >Date of Birth (mm/dd/yyyy):</label>
                                             <input type="date" id="cus_dob" name="cus_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" value="<?php echo $cus_dob; ?>" placeholder="Date of Birth"  class="form-control" maxlength="15"/>
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label" >Married Status:</label>
                                             <select name="cus_ms" value="<?php echo $cus_ms; ?>" class="form-control" id="c_m_status" onchange="setCusDependancy();">
+                                                <option value="0">~~Select Status~~</option>
                                                 <option value="Single">Single</option>
                                                 <option value="Married">Married</option>
                                             </select>
@@ -425,7 +426,7 @@ if (!isset($_SESSION['user_email'])) {
                                             <input type="text" id="cus_bhalf_name" name="cus_hhalf_name" id="fname" value="<?php echo $cus_hhalf_name; ?>" placeholder="Full Name"   class="form-control" />
                                         </div>
                                         <div class="form-group  ">
-                                            <span style="color:red;">*</span><label class="control-label"   id="">Date of Birth:</label>
+                                            <span style="color:red;">*</span><label class="control-label"   id="">Date of Birth (mm/dd/yyyy):</label>
                                             <input type="date" id="cus_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" name="cus_bhalf_dob" value="<?php echo $cus_bhalf_dob; ?>" placeholder="Date of Birth"   class="form-control" />
                                         </div>
 
@@ -481,22 +482,22 @@ if (!isset($_SESSION['user_email'])) {
                                             <input type="tel" id="g_tp" name="gua_tp" maxlength="10" value="<?php echo $gua_tp; ?>" placeholder="Telephone"   class="form-control" />
                                         </div>
                                         <div class="form-group  ">
-                                            <span style="color:red;">*</span><label class="control-label">Date of Birth:</label>
+                                            <span style="color:red;">*</span><label class="control-label">Date of Birth (mm/dd/yyyy):</label>
                                             <input type="date" id="g_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" name="gua_dob" value="<?php echo $gua_dob; ?>" placeholder="Date of Birth"   class="form-control" />
 
                                         </div>
                                         <div class="form-group  ">
+                                            <span style="color:red;">*</span><label class="control-label">NIC Number:</label>
+                                            <input type="text" id="g_nic" name="gua_nic" maxlength="10" value="<?php echo $gua_nic; ?>" placeholder="National Identity Card Number"   class="form-control" style="text-transform: uppercase;"/>
+                                        </div>
+                                        <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Married Status:</label>
                                             <select name="gua_ms" value="<?php echo $gua_ms; ?>" class="form-control" id="g_m_status" onchange="setGuaDependancy();">
+                                                <option value="0">~~Select Status~~</option>
                                                 <option value="Single">Single</option>
                                                 <option value="Married">Married</option>
                                             </select>
                                         </div>
-                                        <div class="form-group  ">
-                                            <span style="color:red;">*</span><label class="control-label">NIC Number:</label>
-                                            <input type="text" id="g_nic" name="gua_nic" maxlength="10" value="<?php echo $gua_nic; ?>" placeholder="National Identity Card Number"   class="form-control" />
-                                        </div>
-
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Have any Dependencies:</label>
                                             <input type="number" id="g_depend" min="0" max="20" name="gua_dependency" value="0" placeholder="Have any Dependencies" class="form-control" readonly/>
@@ -529,7 +530,7 @@ if (!isset($_SESSION['user_email'])) {
                                             <input type="text" id="g_bhalf_fullname" name="gua_bhalf_fullname" id="fname" value="<?php echo $gua_bhalf_fullname; ?>" placeholder="Full Name"   class="form-control" />
                                         </div>
                                         <div class="form-group  ">
-                                            <span style="color:red;">*</span><label class="control-label">Date of Birth:</label>
+                                            <span style="color:red;">*</span><label class="control-label">Date of Birth (mm/dd/yyyy):</label>
                                             <input type="date" id="g_bhalf_dob" name="gua_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" value="<?php echo $gua_bhalf_dob; ?>" placeholder="Date of Birth" class="form-control" />
                                         </div>
 
@@ -894,21 +895,62 @@ if (!isset($_SESSION['user_email'])) {
                                                         //alert("Single");
                                                         document.getElementById('cus_depend').value = "0";
                                                         document.getElementById('cus_depend').readOnly = true;
+                                                        document.getElementById('cus_bhalf_name').value = "None";
+                                                        document.getElementById('cus_bhalf_name').readOnly = true;
+                                                        document.getElementById('cus_bhalf_dob').value = "None";
+                                                        document.getElementById('cus_bhalf_dob').readOnly = true;
+                                                        document.getElementById('cus_bhalf_position').value = "None";
+                                                        document.getElementById('cus_bhalf_position').readOnly = true;
+                                                        document.getElementById('cus_bhalf_salary').value = "None";
+                                                        document.getElementById('cus_bhalf_salary').readOnly = true;
+                                                        document.getElementById('cus_bhalf_emp_name').value = "None";
+                                                        document.getElementById('cus_bhalf_emp_name').readOnly = true;
                                                     }
                                                     else if (document.getElementById('c_m_status').value == "Married") {
-                                                       // alert("Married");
+                                                        // alert("Married");
                                                         document.getElementById('cus_depend').value = "0";
                                                         document.getElementById('cus_depend').readOnly = false;
+                                                        document.getElementById('cus_bhalf_name').value = "";
+                                                        document.getElementById('cus_bhalf_name').readOnly = false;
+                                                        document.getElementById('cus_bhalf_dob').value = "";
+                                                        document.getElementById('cus_bhalf_dob').readOnly = false;
+                                                        document.getElementById('cus_bhalf_position').value = "";
+                                                        document.getElementById('cus_bhalf_position').readOnly = false;
+                                                        document.getElementById('cus_bhalf_salary').value = "";
+                                                        document.getElementById('cus_bhalf_salary').readOnly = false;
+                                                        document.getElementById('cus_bhalf_emp_name').value = "";
+                                                        document.getElementById('cus_bhalf_emp_name').readOnly = false;
                                                     }
                                                 }
                                                 function setGuaDependancy() {
                                                     if (document.getElementById('g_m_status').value == "Single") {
                                                         document.getElementById('g_depend').value = "0";
                                                         document.getElementById('g_depend').readOnly = true;
+                                                        document.getElementById('g_bhalf_fullname').value = "None";
+                                                        document.getElementById('g_bhalf_fullname').readOnly = true;
+                                                        document.getElementById('g_bhalf_dob').value = "None";
+                                                        document.getElementById('g_bhalf_dob').readOnly = true;
+                                                        document.getElementById('g_bhalf_position').value = "None";
+                                                        document.getElementById('g_bhalf_position').readOnly = true;
+                                                        document.getElementById('g_bhalf_salary').value = "None";
+                                                        document.getElementById('g_bhalf_salary').readOnly = true;
+                                                        document.getElementById('g_bhalf_emp_name').value = "None";
+                                                        document.getElementById('g_bhalf_emp_name').readOnly = true;
+
                                                     }
                                                     else if (document.getElementById('g_m_status').value == "Married") {
                                                         document.getElementById('g_depend').value = "0";
                                                         document.getElementById('g_depend').readOnly = false;
+                                                        document.getElementById('g_bhalf_fullname').value = "";
+                                                        document.getElementById('g_bhalf_fullname').readOnly = false;
+                                                        document.getElementById('g_bhalf_dob').value = "";
+                                                        document.getElementById('g_bhalf_dob').readOnly = false;
+                                                        document.getElementById('g_bhalf_position').value = "";
+                                                        document.getElementById('g_bhalf_position').readOnly = false;
+                                                        document.getElementById('g_bhalf_salary').value = "";
+                                                        document.getElementById('g_bhalf_salary').readOnly = false;
+                                                        document.getElementById('g_bhalf_emp_name').value = "";
+                                                        document.getElementById('g_bhalf_emp_name').readOnly = false;
                                                     }
                                                 }
 

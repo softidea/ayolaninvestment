@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_email'])) {
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>User|Home</title>
+        <title>User | Home</title>
         <?php include '../assets/include/head.php'; ?>
         <link rel="stylesheet" href="../assets/css/home.css">
 
@@ -31,8 +31,9 @@ if (!isset($_SESSION['user_email'])) {
                             </a>
                             <span class="hidden-xs hidden-sm hidden-md">+94714 339 339</span>
                         </li>
-                        <li><a href="#" id="wishlist-total" title="My Account"><i class="glyphicon glyphicon-user"></i> <span class="hidden-xs hidden-sm hidden-md">My Account</span></a></li>
-                        <li><a id="wishlist-total" href="../controller/co_logout.php" style="text-decoration: none;"><i class="glyphicon glyphicon-user"></i> <span class="hidden-xs hidden-sm hidden-md">Logout</span></a></li>	
+                        <li><a href="../admin/index.php"  title="User Management"><i class="glyphicon glyphicon-user"></i> <span class="hidden-xs hidden-sm hidden-md">User Management</span></a></li>
+                        <li><a href="#"  title="My Account"><i class="glyphicon glyphicon-user"></i> <span class="hidden-xs hidden-sm hidden-md">My Account</span></a></li>
+                        <li><a href="../controller/co_logout.php" style="text-decoration: none;"><i class="glyphicon glyphicon-user"></i> <span class="hidden-xs hidden-sm hidden-md">Logout</span></a></li>	
                     </ul>
                 </div>
             </div>

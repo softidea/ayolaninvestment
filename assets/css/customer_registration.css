@@ -34,3 +34,29 @@ ul {
 {
     background-color: #004D40;
 }
+#panelheading
+{
+    background: #009688;
+    color: white;          
+}
+#custcontinue
+{
+    background-color: #009688;
+    color: white;
+    float: right;
+}
+#custcontinue:hover
+{
+    background-color: #004D40;
+}
+#backregister
+{
+    background-color: #009688;
+    color: white;
+    float: right;
+    margin-right: 12px;
+}
+#backregister:hover
+{
+    background-color: #004D40;
+}

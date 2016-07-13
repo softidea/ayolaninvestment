@@ -301,6 +301,15 @@ if (!isset($_SESSION['user_email'])) {
                             <div class="panel-body" style="background-color: #FAFAFA;">
                                 <div class="col-sm-6">
                                     <fieldset id="account">
+                                        <div class="form-group required">
+                                            <label class="control-label">Customer NIC:</label>
+                                            <div class="form-inline required">
+                                                <input type="text"  name="cus_nic" id="cus_nic" placeholder="NIC" class="form-control" style="width:85%;text-transform: uppercase;" maxlength="10" required/>
+                                                <input type="button" class="btn btn" id="custcontinue" onclick="" value="Search">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset id="account">
                                         <legend>01.Customer Personal Details</legend>
 
                                         <label class="radio-inline"><input type="radio" name="optradioo" checked>: Mr</label>
@@ -308,7 +317,7 @@ if (!isset($_SESSION['user_email'])) {
                                         <label class="radio-inline"><input type="radio" name="optradioo">: Miss</label>
                                         <div class="form-group  ">
                                             <label class="control-label" for="input-email">Full Name:</label>
-                                            <input type="text" name="cus_fullname" id="fname" value="<?php echo $cus_fullname; ?>" placeholder="Full Name" id="input-email" class="form-control" maxlength="100" />
+                                            <input type="text" name="cus_fullname" id="fname" value="<?php echo $cus_fullname; ?>" placeholder="Full Name" class="form-control" maxlength="100" />
                                         </div>
                                         <div class="form-group  ">
                                             <label class="control-label" for="input-email">Name with Initials:</label>
@@ -389,6 +398,15 @@ if (!isset($_SESSION['user_email'])) {
 
                                 <!--Guranter Details-->
                                 <div class="col-sm-6">
+
+                                    <fieldset id="account">
+                                        <div class="form-group required" style="display: block;" id="service_combo_div">
+                                            <label class="control-label">Select Service:</label>
+                                            <select name="service_combo" id="service_combo" class="form-control" onchange="">
+                                                <option value='0'>~~Select Service~~</option>
+                                            </select>
+                                        </div>
+                                    </fieldset>
                                     <fieldset id="account">
                                         <legend>02.Guarantor Personal Details</legend>
                                         <label class="radio-inline"><input type="radio" name="optradio" checked>: Mr</label>
@@ -544,306 +562,234 @@ if (!isset($_SESSION['user_email'])) {
                                             </table>
                                         </div>
                                     </fieldset>
-                                    
                                 </div>
-
                                 <div class="col-md-6">
                                     <label class="control-label" for="input-email">Registration Date</label>   
                                     <input type="date" name="reg_date" value="<?php echo $reg_date; ?>" placeholder="Date" id="input-email" class="form-control" />
 
                                 </div>
-
-                                <div class="col-md-12">
-                                    <input type="button" class="btn btn" name="customer_continue" id="custcontinue" onclick="gotosecond();"value="Continue">
-                                </div>
                             </div>
                         </form>
                     </div>
+                    <!--Property Panel-->
+                    <div style="display: block;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" id="panelheading">
+                                <h3 class="panel-title">Property Information</h3>
+                            </div>
+                            <div class="panel-body" >
+                                <div class="col-sm-6">
+                                    <fieldset id="account"><td>
+                                        <legend>Property Details</legend>
+                                        <div class="form-group  ">
+                                            <label class="control-label" for="input-email">Reference Person:</label>
+                                            <input type="text" name="fname" id="fname" value="" placeholder="Reference Person" id="input-email" class="form-control"  />
+                                        </div>
+                                        <div class="form-group  ">
+                                            <label class="control-label" for="input-email">Select Property:</label>
+                                            <select name="cbopayment" id="input-region" class="form-control"   onchange="check();">
+                                                <option value="bike">Bike</option>
+                                                <option value="twheel">Three-Wheel</option>
+                                                <option value="land">Land</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group  ">
+                                            <label class="control-label" for="input-email">Upload Customer:</label>
+                                            <input type="file" name="product_image"  />
+                                        </div>
+                                        <div class="form-group  ">
+                                            <label class="control-label" for="input-email">Upload Property:</label>
+                                            <input type="file" name="product_image"  />
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <div id="leasepanel">
+                                        <fieldset id="account">
+                                            <legend>Update Leasing Details</legend>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Service No:</label>
+                                                <input type="text" name="service_no" id="sno" placeholder="Service No" id="input-email" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Select Category:</label>
+                                                <select name="vehicle_brand" id="v_cat" class="form-control" onchange="set_vehicle_div(this.value);">
+                                                    <option value="0">~~Select Category~~</option>
+                                                    <option value="1">Bike</option>
+                                                    <option value="2">Three-Wheel</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Select Vehicle Brand:</label>
+                                                <select name="vehicle_brand" id="v_brand" class="form-control" onchange="showTypes(this.value);">
+                                                    <?php load_vehicle_brands(); ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Select Vehicle Type:</label>
+                                                <select name="vehicle_type" id="v_type" class="form-control" required onchange="showVehicleMods(this.value);">
+                                                    <option value="0">~~Select Vehicle Type~~</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Vehicle Pre Code:</label>
+                                                <select name="vehicle_code" id="v_code" class="form-control" required onchange="showDetails();">
+                                                    <option value="0">~~Select Vehicle Code~~</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-inline required">
+                                                <input type="text" name="vehicle_no" style="text-transform: uppercase;"id="v_no_code" placeholder="Ex:ME" id="input-email" class="form-control" required/>
+                                                <label class="control-label" for="input-email"> - </label>
+                                                <input type="text" name="vehicle_no" maxlength="4" id="v_no" placeholder="Ex:2558" id="input-email" class="form-control" required/>
+                                                <br>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Model Year:</label>
+                                                <input type="text" disabled name="model_year" id="m_year" placeholder="Model Year" id="input-email" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Lease Rate:</label>
+                                                <input type="text" disabled name="lease_rate" id="l_rate" placeholder="Lease Rate" id="input-email" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Fixed Rate:</label>
+                                                <input type="text" name="fixed_rate" id="f_rate" placeholder="Fix Rate" id="input-email" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Select Period:</label>
+                                                <select name="cbo_loan_duration" id="input-region" class="form-control" required>
+                                                    <option value="6">6 Months</option>
+                                                    <option value="12">1 Year</option>
+                                                    <option value="18">1.5 Years</option>
+                                                    <option value="24">2 Years</option>
+                                                    <option value="30">2.5 Years</option>
+                                                    <option value="36">3 Years</option>
+                                                    <option value="42">3.5 Years</option>
+                                                    <option value="48">4 Years</option>
+                                                    <option value="54">4.5 Years</option>
+                                                    <option value="60">5 Years</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Description of the Loan:</label>
+                                                <input type="text" id="input-email" class="form-control" name="loan_description" placeholder="Description of the Loan">
+                                            </div>
+
+                                            <button type="button" class="btn btn" id="custcontinue">Update Lease</button>
+                                        </fieldset>
+                                    </div>
+
+                                    <!--Property Land Panel-->
+                                    <div id="landpanel" style="display: none;">
+                                        <fieldset id="account">
+                                            <legend>Update Land Pawning Details</legend>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Service No:</label>
+                                                <input type="text" name="service_no" id="sno" placeholder="Service No" id="input-email" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Deed Number:</label>
+                                                <input type="text" name="deed_no" id="deed" placeholder="Deed Number" id="input-email" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Registration Date:</label>
+                                                <input type="date" name="reg_date" id="regdate" value="" placeholder="Registration Date" id="input-email" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Select Amount:</label>
+                                                <select name="cbo_period" id="aid" class="form-control">
+                                                    <option value="0">~~Select Amount~~</option>
+                                                    <option value="1">100,000.00</option>
+                                                    <option value="2">200,000.00</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Select Period:</label>
+                                                <select name="cbo_year" id="yid" class="form-control" onchange="load_interest();">
+                                                    <option value="0"> --- Please Select --- </option>
+                                                    <option value="1">1 Year</option>
+                                                    <option value="2">2 Year</option>
+                                                    <option value="3">3 Year</option>
+                                                    <option value="4">4 Year</option>
+                                                    <option value="5">5 Year</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Pawn Rate:</label>
+                                                <input type="text" disabled name="pawn_rate" id="pawnrate" placeholder="Pawn Rate" id="input-email" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Fixed Rate:</label>
+                                                <input type="text" name="fixed_rate" id="fixedrate" value="" placeholder="Fixed Rate" id="input-email" class="form-control" required/>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label" for="input-email">Description of the Loan:</label>
+                                                <input type="text" id="input-email" class="form-control" name="loan_description" placeholder="Description of the Loan">
+                                            </div>
+                                            <button type="button" class="btn btn" id="custcontinue">Update Pawn</button>
+                                        </fieldset>
+                                    </div>
+                                    <!--Property Land Panel-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Property Panel-->
                 </div>
             </div>
         </div>
         <!--Customer Panel Section-->
 
 
-        <!--Property Panel Section-->
-        <div class="container" style="margin-top: 80px;display: none;" id="second">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" id="panelheading">
-                            <h3 class="panel-title">Property Information</h3>
-                        </div>
-                        <div class="panel-body" >
-                            <div class="col-sm-6">
-                                <fieldset id="account"><td>
-                                    <legend>Property Details</legend>
-                                    <div class="form-group  ">
-                                        <label class="control-label" for="input-email">Reference Person:</label>
-                                        <input type="text" name="fname" id="fname" value="" placeholder="Reference Person" id="input-email" class="form-control"  />
-                                    </div>
-                                    <div class="form-group  ">
-                                        <label class="control-label" for="input-email">Select Property:</label>
-                                        <select name="cbopayment" id="input-region" class="form-control"   onchange="check();">
-                                            <option value="bike">Bike</option>
-                                            <option value="twheel">Three-Wheel</option>
-                                            <option value="land">Land</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group  ">
-                                        <label class="control-label" for="input-email">Upload Customer:</label>
-                                        <input type="file" name="product_image"  />
-                                    </div>
-                                    <div class="form-group  ">
-                                        <label class="control-label" for="input-email">Upload Property:</label>
-                                        <input type="file" name="product_image"  />
-                                    </div>
-                                </fieldset>
-
-                            </div>
-                            <div class="col-sm-6">
-                                <div id="leasepanel">
-                                    <fieldset id="account">
 
 
-                                        <legend>Update Leasing Details</legend>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Service No:</label>
-                                            <input type="text" name="service_no" id="sno" placeholder="Service No" id="input-email" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Select Category:</label>
-                                            <select name="vehicle_brand" id="v_cat" class="form-control" onchange="set_vehicle_div(this.value);">
-                                                <option value="0">~~Select Category~~</option>
-                                                <option value="1">Bike</option>
-                                                <option value="2">Three-Wheel</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Select Vehicle Brand:</label>
-                                            <select name="vehicle_brand" id="v_brand" class="form-control" onchange="showTypes(this.value);">
-                                                <?php load_vehicle_brands(); ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Select Vehicle Type:</label>
-                                            <select name="vehicle_type" id="v_type" class="form-control" required onchange="showVehicleMods(this.value);">
-                                                <option value="0">~~Select Vehicle Type~~</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Vehicle Pre Code:</label>
-                                            <select name="vehicle_code" id="v_code" class="form-control" required onchange="showDetails();">
-                                                <option value="0">~~Select Vehicle Code~~</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-inline required">
-                                            <input type="text" name="vehicle_no" style="text-transform: uppercase;"id="v_no_code" placeholder="Ex:ME" id="input-email" class="form-control" required/>
-                                            <label class="control-label" for="input-email"> - </label>
-                                            <input type="text" name="vehicle_no" maxlength="4" id="v_no" placeholder="Ex:2558" id="input-email" class="form-control" required/>
-                                            <br>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Model Year:</label>
-                                            <input type="text" disabled name="model_year" id="m_year" placeholder="Model Year" id="input-email" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Lease Rate:</label>
-                                            <input type="text" disabled name="lease_rate" id="l_rate" placeholder="Lease Rate" id="input-email" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Fixed Rate:</label>
-                                            <input type="text" name="fixed_rate" id="f_rate" placeholder="Fix Rate" id="input-email" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Select Period:</label>
-                                            <select name="cbo_loan_duration" id="input-region" class="form-control" required>
-                                                <option value="6">6 Months</option>
-                                                <option value="12">1 Year</option>
-                                                <option value="18">1.5 Years</option>
-                                                <option value="24">2 Years</option>
-                                                <option value="30">2.5 Years</option>
-                                                <option value="36">3 Years</option>
-                                                <option value="42">3.5 Years</option>
-                                                <option value="48">4 Years</option>
-                                                <option value="54">4.5 Years</option>
-                                                <option value="60">5 Years</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Description of the Loan:</label>
-                                            <input type="text" id="input-email" class="form-control" name="loan_description" placeholder="Description of the Loan">
-                                        </div>
+        <!--Footer Section-->
+        <?php include '../assets/include/footer.php'; ?>
+        <!--Footer Section-->
 
-                                        <button type="button" class="btn btn" id="custcontinue">Update Lease</button>
-                                        <button type="button" class="btn btn" id="backregister" onclick="gotoone();">Back</button>
-                                    </fieldset>
-                                </div>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script src="http://bootsnipp.com/dist/scripts.min.js"></script>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script type="text/javascript">
+                                                    function gotosecond()
+                                                    {
+                                                        document.getElementById('one').style.display = "none";
+                                                        document.getElementById('second').style.display = "block";
+                                                    }
+                                                    function gotoone()
+                                                    {
+                                                        document.getElementById('one').style.display = "block";
+                                                        document.getElementById('second').style.display = "none";
+                                                    }
 
-                                <!--Property Land Panel-->
-                                <div id="landpanel" style="display: none;">
-                                    <fieldset id="account">
-                                        <legend>Update Land Pawning Details</legend>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Service No:</label>
-                                            <input type="text" name="service_no" id="sno" placeholder="Service No" id="input-email" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Deed Number:</label>
-                                            <input type="text" name="deed_no" id="deed" placeholder="Deed Number" id="input-email" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Registration Date:</label>
-                                            <input type="date" name="reg_date" id="regdate" value="" placeholder="Registration Date" id="input-email" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Select Amount:</label>
-                                            <select name="cbo_period" id="aid" class="form-control">
-                                                <option value="0">~~Select Amount~~</option>
-                                                <option value="1">100,000.00</option>
-                                                <option value="2">200,000.00</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Select Period:</label>
-                                            <select name="cbo_year" id="yid" class="form-control" onchange="load_interest();">
-                                                <option value="0"> --- Please Select --- </option>
-                                                <option value="1">1 Year</option>
-                                                <option value="2">2 Year</option>
-                                                <option value="3">3 Year</option>
-                                                <option value="4">4 Year</option>
-                                                <option value="5">5 Year</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Pawn Rate:</label>
-                                            <input type="text" disabled name="pawn_rate" id="pawnrate" placeholder="Pawn Rate" id="input-email" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Fixed Rate:</label>
-                                            <input type="text" name="fixed_rate" id="fixedrate" value="" placeholder="Fixed Rate" id="input-email" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Description of the Loan:</label>
-                                            <input type="text" id="input-email" class="form-control" name="loan_description" placeholder="Description of the Loan">
-                                        </div>
-                                        <button type="button" class="btn btn" id="custcontinue">Update Pawn</button>
-                                        <button type="button" class="btn btn" id="backregister" onclick="gotoone();">Back</button>
-                                    </fieldset>
-                                </div>
-                                <!--Property Land Panel-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Property Panel Section-->
-
-        <!--Popup Pane of Customers-->
-        <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;
-                            </span><span class="sr-only"> Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Choose Customer</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-inline">
-                            <button type="button" id="cviewbuttons" class="btn btn">New Customer</button>
-                            <a href="addlease"><button type="button" id="cviewbuttons" class="btn btn">Exiting Customer</button></a>
-                        </div>
-                        <ul>
-                            <li><p style="margin-top: 12px;">New Customer Option can be Used to Create new Customer Account</p></li>
-                            <li><p>Exiting Customer Option can be used to add services to currently registered customers in the company</p></li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" 
-                                class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div
-            </div>
-        </div>
-    </div>
-    <!--Popup Pane of Customers-->
-
-
-    <!--Footer Section-->
-    <?php include '../assets/include/footer.php'; ?>
-    <!--Footer Section-->
-
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="http://bootsnipp.com/dist/scripts.min.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <style>
-        #panelheading
-        {
-            background: #009688;
-            color: white;          
-        }
-        #custcontinue
-        {
-            background-color: #009688;
-            color: white;
-            float: right;
-        }
-        #custcontinue:hover
-        {
-            background-color: #004D40;
-        }
-        #backregister
-        {
-            background-color: #009688;
-            color: white;
-            float: right;
-            margin-right: 12px;
-        }
-        #backregister:hover
-        {
-            background-color: #004D40;
-        }
-    </style>
-    <script type="text/javascript">
-                                            function gotosecond()
-                                            {
-                                                document.getElementById('one').style.display = "none";
-                                                document.getElementById('second').style.display = "block";
-                                            }
-                                            function gotoone()
-                                            {
-                                                document.getElementById('one').style.display = "block";
-                                                document.getElementById('second').style.display = "none";
-                                            }
-
-    </script>
-    <script>
-        function check()
-        {
-            var property = document.getElementById('input-region').value;
-            if (property == 'bike')
+        </script>
+        <script>
+            function check()
             {
-                alert("Bike");
-                document.getElementById('landpanel').style.display = 'none';
-                document.getElementById('leasepanel').style.display = 'block';
-            } else if (property == 'twheel')
-            {
-                alert("Three-Wheel");
-                document.getElementById('landpanel').style.display = 'none';
-                document.getElementById('leasepanel').style.display = 'block';
-            } else if (property == 'land')
-            {
-                alert("Land");
-                document.getElementById('leasepanel').style.display = 'none';
-                document.getElementById('landpanel').style.display = 'block';
+                var property = document.getElementById('input-region').value;
+                if (property == 'bike')
+                {
+                    alert("Bike");
+                    document.getElementById('landpanel').style.display = 'none';
+                    document.getElementById('leasepanel').style.display = 'block';
+                } else if (property == 'twheel')
+                {
+                    alert("Three-Wheel");
+                    document.getElementById('landpanel').style.display = 'none';
+                    document.getElementById('leasepanel').style.display = 'block';
+                } else if (property == 'land')
+                {
+                    alert("Land");
+                    document.getElementById('leasepanel').style.display = 'none';
+                    document.getElementById('landpanel').style.display = 'block';
+                }
             }
-        }
-        function change() {
+            function change() {
 
-        }
-    </script>
+            }
+        </script>
 
-</body>
+    </body>
 </html>
