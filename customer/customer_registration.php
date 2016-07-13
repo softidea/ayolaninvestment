@@ -387,7 +387,6 @@ if (!isset($_SESSION['user_email'])) {
                                             <span style="color:red;">*</span><label class="control-label" >Date of Birth:</label>
                                             <input type="date" id="cus_dob" name="cus_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" value="<?php echo $cus_dob; ?>" placeholder="Date of Birth"  class="form-control" maxlength="15"/>
                                         </div>
-
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label" >Married Status:</label>
                                             <select name="cus_ms" value="<?php echo $cus_ms; ?>" class="form-control" id="c_m_status" onchange="setCusDependancy();">
