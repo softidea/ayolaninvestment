@@ -372,7 +372,7 @@ VALUES
     //land service para
 
     if (isset($_POST['cbopayment']) == "bike") {
-
+        
 
 
         $sql_query_service_add_bike = "INSERT INTO service(
@@ -380,7 +380,6 @@ VALUES
         cbopayment,
         ser_caty,
         ser_vbrand,
-        ser_vtype_id,
         ser_v_code,
         ser_v_d_number,
         ser_v_d_modelyear,
@@ -391,7 +390,7 @@ VALUES
         ser_duration,
         ser_date,
         ser_details,
-        ser_installment,
+        ser_instalment,
         refrence_person,
         ser_status,
         cus_nic
@@ -402,7 +401,6 @@ VALUES
         '$cbopayment',
         '$cbopayment',
         '$vehicle_brand',
-        '$vehicle_type',
         '$vehicle_code',
         '$vehicle_no',
         '$model_year',
@@ -423,7 +421,7 @@ VALUES
         $runquery_sql_query_service_add = mysqli_query($conn, $sql_query_service_add_bike);
     } else if (isset($_POST['cbopayment']) == "twheel") {
 
-
+      
 
 
         $sql_query_service_add_twheel = "INSERT INTO service(
@@ -431,7 +429,6 @@ VALUES
         cbopayment,
         ser_caty,
         ser_vbrand,
-        ser_vtype_id,
         ser_v_code,
         ser_v_d_number,
         ser_v_d_modelyear,
@@ -442,7 +439,7 @@ VALUES
         ser_duration,
         ser_date,
         ser_details,
-        ser_installment,
+       ser_instalment,
         refrence_person,
         ser_status,
         cus_nic
@@ -453,7 +450,6 @@ VALUES
         '$cbopayment',
         '$cbopayment',
         'No Brand',
-        '$vehicle_type',
         '$vehicle_code',
         '$vehicle_no',
         'No Model Year',
@@ -472,14 +468,13 @@ VALUES
         ";
     } else if (isset($_POST['cbopayment']) == "land") {
 
-
+       
 
         $sql_query_service_add_land = "INSERT INTO service(
       ser_number,
       cbopayment,
       ser_caty,
       ser_vbrand,
-      ser_vtype_id,
       ser_v_code,
       ser_v_d_number,
       ser_v_d_modelyear,
@@ -490,7 +485,7 @@ VALUES
       ser_duration,
       ser_date,
       ser_details,
-      ser_installment,
+      ser_instalment,
       refrence_person,
       ser_status,
       cus_nic,
@@ -502,7 +497,6 @@ VALUES
         '$cbopayment',
         '$cbopayment',
         'No Brand',
-        'No Type',
         'No Code',
         '$deed_no',
         'No Model Year',
@@ -519,7 +513,7 @@ VALUES
         '$cus_nic',
         '$land_reg_date'
           ) ;
-  ) ;
+
 ";
     }
 
