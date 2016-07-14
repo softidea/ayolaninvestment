@@ -4,6 +4,10 @@ body {
     font-family: 'Open Sans', 'sans-serif';
     background:#f0f0f0;
 }
+.admin_wapper
+{
+    margin-top: 50px;
+}
 .navbar-nav>li>.dropdown-menu {
     margin-top:20px;
     border-top-left-radius:4px;
@@ -79,26 +83,36 @@ body {
 body
 {
     font-family: 'Source Sans Pro', sans-serif;
+    background-image: url('../images/admin/admin_background.jpg');
+
 }
 #panelheading
 {
-    background: #212121;
+    background: #424242;
     color: white;
     text-align: center;
 }
 .panel-footer
 {
-    background: #212121;
+    background: #424242;
     color: white;
     text-align: center; 
 }
 .panelimage
 {
-    width: 200px;
-    height: 110px;
+    width: 60%;
+    height: 60%;
 }
-.panelimage:hover{opacity: 0.5;}
-.panel-body:hover{opacity: 0.5;}
+#listButton{
+    background: #212121;
+    color: whitesmoke;
+}
+#listButton:hover{
+    background: #424242;
+    color: whitesmoke;
+    height: 45px;
+}
+.panel-body{text-align: center;background: #212121;}
 #btnhov:hover{
     background-color: #009688;
 }
