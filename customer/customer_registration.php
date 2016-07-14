@@ -757,7 +757,9 @@ if (!isset($_SESSION['user_email'])) {
                                                 <label class="control-label">Select Period:</label>
                                                 <select name="cbo_loan_duration" id="setServiceInstallment" class="form-control" onchange="setSerInstallment();">
                                                     <option value="0">~~Select Period~~</option>
+                                                    <option value="3">3 Months</option>
                                                     <option value="6">6 Months</option>
+                                                    <option value="9">9 Months</option>
                                                     <option value="12">1 Year</option>
                                                     <option value="18">1.5 Years</option>
                                                     <option value="24">2 Years</option>

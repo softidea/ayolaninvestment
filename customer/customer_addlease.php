@@ -54,24 +54,31 @@ if (!isset($_SESSION['user_email'])) {
         </script>
         <script type="text/javascript">
             function showTypes(str) {
-                if (document.getElementById('v_cat').selectedIndex == 1) {
-                    if (str == "") {
-                        document.getElementById("v_type").innerHTML = "";
-                        return;
-                    }
-                    if (window.XMLHttpRequest) {
-                        // code for IE7+, Firefox, Chrome, Opera, Safari
-                        xmlhttp = new XMLHttpRequest();
-                    } else { // code for IE6, IE5
-                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            document.getElementById("v_type").innerHTML = xmlhttp.responseText;
+                
+                var otherType="";
+                if (str == "other") {
+                    
+                } else {
+                    if (document.getElementById('v_cat').selectedIndex == 1) {
+                        if (str == "") {
+                            document.getElementById("v_type").innerHTML = "";
+                            return;
                         }
+                        if (window.XMLHttpRequest) {
+                            // code for IE7+, Firefox, Chrome, Opera, Safari
+                            xmlhttp = new XMLHttpRequest();
+                        } else { // code for IE6, IE5
+                            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        xmlhttp.onreadystatechange = function () {
+                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                
+                                document.getElementById("v_type").innerHTML = xmlhttp.responseText;
+                            }
+                        }
+                        xmlhttp.open("GET", "../controller/co_load_vehicle_types.php?q=" + str, true);
+                        xmlhttp.send();
                     }
-                    xmlhttp.open("GET", "../controller/co_load_vehicle_types.php?q=" + str, true);
-                    xmlhttp.send();
                 }
 
             }
@@ -264,11 +271,11 @@ if (!isset($_SESSION['user_email'])) {
                 var v_lease_period = document.getElementById('v_lease_period').value;
                 var v_lease_des = document.getElementById('lease_des').value;
                 var c_nic = document.getElementById('customer_nic').value;
-                var installment=document.getElementById('ser_installment').value;
+                var installment = document.getElementById('ser_installment').value;
 
                 if (service_no != "" && v_cat != "" && v_brand != "" && v_type != "" && v_code != ""
                         && v_number != "" && v_myear != "" && v_lrate != ""
-                        && v_frate != "" && v_lease_period != "" && v_lease_des != "" && c_nic != "" && installment!="") {
+                        && v_frate != "" && v_lease_period != "" && v_lease_des != "" && c_nic != "" && installment != "") {
 
                     alert("inside save code");
                     if (window.XMLHttpRequest) {
@@ -282,7 +289,7 @@ if (!isset($_SESSION['user_email'])) {
                             alert(xmlhttp.responseText);
                         }
                     }
-                    xmlhttp.open("GET", "../controller/ser_external_v_service_save.php?cus_nic=" + c_nic + "&sno=" + service_no + "&v_cat=" + v_cat + "&v_brand=" + v_brand + "&v_type=" + v_type + "&v_code=" + v_code + "&v_number=" + v_number + "&v_myear=" + v_myear + "&v_lrate=" + v_lrate + "&v_frate=" + v_frate + "&v_period=" + v_lease_period + "&v_des=" + v_lease_des+"&installment="+installment, true);
+                    xmlhttp.open("GET", "../controller/ser_external_v_service_save.php?cus_nic=" + c_nic + "&sno=" + service_no + "&v_cat=" + v_cat + "&v_brand=" + v_brand + "&v_type=" + v_type + "&v_code=" + v_code + "&v_number=" + v_number + "&v_myear=" + v_myear + "&v_lrate=" + v_lrate + "&v_frate=" + v_frate + "&v_period=" + v_lease_period + "&v_des=" + v_lease_des + "&installment=" + installment, true);
                     xmlhttp.send();
                 }
             }
@@ -302,7 +309,7 @@ if (!isset($_SESSION['user_email'])) {
                     xmlhttp.onreadystatechange = function () {
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                             alert(xmlhttp.responseText);
-                            document.getElementById('ser_installment').value=xmlhttp.responseText;
+                            document.getElementById('ser_installment').value = xmlhttp.responseText;
                         }
                     }
                     xmlhttp.open("GET", "../controller/co_load_lease_customer.php?payment=" + payment + "&period=" + period, true);
@@ -312,7 +319,7 @@ if (!isset($_SESSION['user_email'])) {
         </script>
     </head>
     <body>
-        <?php include '../assets/include/navigation_bar.php'; ?>
+<?php include '../assets/include/navigation_bar.php'; ?>
         <!--Lease Registration Panel-->
         <div class="container" style="margin-top: 80px;display: block;" id="one">
             <div class="row">
@@ -374,7 +381,7 @@ if (!isset($_SESSION['user_email'])) {
                                     <div class="form-group required">
                                         <label class="control-label" for="input-email">Select Vehicle Brand:</label>
                                         <select name="vehicle_brand" id="v_brand" class="form-control" onchange="showTypes(this.value);">
-                                            <?php load_vehicle_brands(); ?>
+<?php load_vehicle_brands(); ?>
                                         </select>
                                     </div>
                                     <div class="form-group required">
@@ -410,7 +417,10 @@ if (!isset($_SESSION['user_email'])) {
                                     <div class="form-group required">
                                         <label class="control-label" for="input-email">Select Period:</label>
                                         <select name="cbo_loan_duration" id="v_lease_period" class="form-control" required onchange="setServiceInstallment();">
+                                            <option value="0">~~Select Period~~</option>
+                                            <option value="3">3 Months</option>
                                             <option value="6">6 Months</option>
+                                            <option value="9">9 Months</option>
                                             <option value="12">1 Year</option>
                                             <option value="18">1.5 Years</option>
                                             <option value="24">2 Years</option>
@@ -439,7 +449,7 @@ if (!isset($_SESSION['user_email'])) {
             </div>
         </div>
         <!--Lease Registration Panel-->
-        <?php include '../assets/include/footer.php'; ?>
+<?php include '../assets/include/footer.php'; ?>
     </body>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
