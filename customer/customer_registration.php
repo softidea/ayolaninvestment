@@ -412,7 +412,7 @@ if (!isset($_SESSION['user_email'])) {
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label" >Monthly Salary/Net Income:</label>
-                                            <input type="number" id="cus_salary" name="cus_monthly_salary" value="<?php echo $cus_monthly_salary; ?>" placeholder="XXXXXXXX"  class="form-control" maxlength="10"/>
+                                            <input type="number" id="cus_salary" name="cus_monthly_salary" value="<?php echo $cus_monthly_salary; ?>" placeholder="XXXXXXXX"  class="form-control" min="0"/>
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label" >Employer Name:</label>
@@ -434,7 +434,7 @@ if (!isset($_SESSION['user_email'])) {
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Date of Birth (mm/dd/yyyy):</label>
-                                            <input type="date" id="cus_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" name="cus_bhalf_dob" value="<?php echo $reg_date; ?>" placeholder="Date of Birth"   class="form-control" />
+                                            <input type="date" id="cus_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" name="cus_bhalf_dob" value="<?php echo $reg_date;?>" placeholder="Date of Birth"   class="form-control" />
                                         </div>
 
                                         <div class="form-group  ">
@@ -443,7 +443,7 @@ if (!isset($_SESSION['user_email'])) {
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label"   id="">Monthly Salary/Net Income:</label>
-                                            <input type="number" id="cus_bhalf_salary" maxlength="10" name="cus_bhalf_monthly_salary" value="<?php echo $cus_bhalf_monthly_salary; ?>" placeholder="XXXXXXXX" class="form-control" />
+                                            <input type="number" id="cus_bhalf_salary" min="0" name="cus_bhalf_monthly_salary" value="<?php echo $cus_bhalf_monthly_salary; ?>" placeholder="XXXXXXXX" class="form-control" />
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label"   id="">Employer Name:</label>
@@ -515,15 +515,15 @@ if (!isset($_SESSION['user_email'])) {
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Monthly Salary/Net Income:</label>
-                                            <input type="number" id="g_salary" maxlength="100"  name="gua_monthly_salary" value="<?php echo $gua_monthly_salary; ?>" placeholder="XXXXXXXX" class="form-control" />
+                                            <input type="number" id="g_salary" min="0" name="gua_monthly_salary" value="<?php echo $gua_monthly_salary; ?>" placeholder="XXXXXXXX" class="form-control" />
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Employer Name:</label>
-                                            <input type="text" id="g_emp_name" maxlength="100" name="gua_emp_name" value="<?php echo $gua_emp_name; ?>" placeholder="Employer Name" class="form-control" />
+                                            <input type="text" id="g_emp_name" maxlength="100" name="gua_emp_name" value="<?php echo $gua_emp_name; ?>" placeholder="Employer Name" class="form-control"/>
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Employer Address:</label>
-                                            <input type="text" id="g_emp_address" maxlength="255" name="gua_emp_address" value="<?php echo $gua_emp_address; ?>" placeholder="No,Street,City" class="form-control" />
+                                            <input type="text" id="g_emp_address" maxlength="255" name="gua_emp_address" value="<?php echo $gua_emp_address; ?>" placeholder="No,Street,City" class="form-control"/>
                                         </div>
                                     </fieldset>
                                     <fieldset id="account">
@@ -534,20 +534,20 @@ if (!isset($_SESSION['user_email'])) {
 
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Full Name:</label>
-                                            <input type="text" id="g_bhalf_fullname" maxlength="100" name="gua_bhalf_fullname" id="fname" value="<?php echo $gua_bhalf_fullname; ?>" placeholder="Full Name"   class="form-control" />
+                                            <input type="text" id="g_bhalf_fullname" maxlength="100" name="gua_bhalf_fullname" id="fname" value="<?php echo $gua_bhalf_fullname; ?>" placeholder="Full Name" class="form-control"/>
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Date of Birth (mm/dd/yyyy):</label>
-                                            <input type="date" id="g_bhalf_dob" name="gua_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" value="<?php echo $reg_date; ?>" placeholder="Date of Birth" class="form-control" />
+                                            <input type="date" id="g_bhalf_dob" name="gua_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date;?>" value="<?php echo $reg_date;?>" placeholder="Date of Birth" class="form-control"/>
                                         </div>
 
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Employment/Position:</label>
-                                            <input type="text" id="g_bhalf_position" maxlength="100" name="gua_bhalf_position" value="<?php echo $gua_bhalf_position; ?>" placeholder="Employment/Position" class="form-control" />
+                                            <input type="text" id="g_bhalf_position" maxlength="100" name="gua_bhalf_position" value="<?php echo $gua_bhalf_position; ?>" placeholder="Employment/Position" class="form-control"/>
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Monthly Salary/Net Income:</label>
-                                            <input type="number" id="g_bhalf_salary" name="gua_bhalf_monthly_salary" value="<?php echo $gua_bhalf_monthly_salary; ?>" placeholder="XXXXXXXX" class="form-control" />
+                                            <input type="number" id="g_bhalf_salary" min="0" name="gua_bhalf_monthly_salary" value="<?php echo $gua_bhalf_monthly_salary; ?>" placeholder="XXXXXXXX" class="form-control"/>
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Employer Name:</label>
@@ -697,17 +697,16 @@ if (!isset($_SESSION['user_email'])) {
                                 </div>
 
                                 <!--Start.Leasing Information Details-->
-
-
-
-
                                 <div class="col-sm-6">
                                     <div id="leasepanel">
                                         <fieldset id="account">
                                             <legend>Leasing Details</legend>
-                                            <div class="form-group required">
-                                                <label class="control-label"   id="">Service No:</label>
-                                                <input type="text"  name="service_no"  value="<?php echo $service_no; ?>" id="sno" placeholder="Service No"   class="form-control" required/>
+                                            <div class="form-inline required">
+                                                <select name="service_code" id="scode" class="form-control" onchange="" style="width: 40%;">
+                                                    <option value="HOR">HOR</option>
+                                                    <option value="BUL">BUL</option>
+                                                </select>
+                                                <input type="text" name="service_no" id="sno" placeholder="Service No" class="form-control" maxlength="4" style="width: 59%;" required/>
                                             </div>
                                             <div class="form-group required">
                                                 <label class="control-label"   id="">Select Category:</label>
@@ -933,7 +932,6 @@ if (!isset($_SESSION['user_email'])) {
                                                         document.getElementById('g_depend').readOnly = true;
                                                         document.getElementById('g_bhalf_fullname').value = "None";
                                                         document.getElementById('g_bhalf_fullname').readOnly = true;
-                                                        document.getElementById('g_bhalf_dob').value = "00/00/0000";
                                                         document.getElementById('g_bhalf_dob').readOnly = true;
                                                         document.getElementById('g_bhalf_position').value = "None";
                                                         document.getElementById('g_bhalf_position').readOnly = true;

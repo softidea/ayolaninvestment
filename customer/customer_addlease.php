@@ -54,11 +54,7 @@ if (!isset($_SESSION['user_email'])) {
         </script>
         <script type="text/javascript">
             function showTypes(str) {
-                
-                var otherType="";
-                if (str == "other") {
-                    
-                } else {
+           
                     if (document.getElementById('v_cat').selectedIndex == 1) {
                         if (str == "") {
                             document.getElementById("v_type").innerHTML = "";
@@ -80,9 +76,6 @@ if (!isset($_SESSION['user_email'])) {
                         xmlhttp.send();
                     }
                 }
-
-            }
-
         </script>
 
         <script type="text/javascript">
@@ -381,7 +374,7 @@ if (!isset($_SESSION['user_email'])) {
                                     <div class="form-group required">
                                         <label class="control-label" for="input-email">Select Vehicle Brand:</label>
                                         <select name="vehicle_brand" id="v_brand" class="form-control" onchange="showTypes(this.value);">
-<?php load_vehicle_brands(); ?>
+                                               <?php load_vehicle_brands(); ?>
                                         </select>
                                     </div>
                                     <div class="form-group required">
@@ -404,11 +397,11 @@ if (!isset($_SESSION['user_email'])) {
                                     </div>
                                     <div class="form-group required">
                                         <label class="control-label" for="input-email">Model Year:</label>
-                                        <input type="text" readonly name="model_year" id="m_year" placeholder="Model Year" id="input-email" class="form-control" required/>
+                                        <input type="text" readonly name="model_year" value="<?php echo $model_year;?>" id="m_year" placeholder="Model Year" id="input-email" class="form-control" required/>
                                     </div>
                                     <div class="form-group required">
                                         <label class="control-label" for="input-email">Lease Rental:</label>
-                                        <input type="text" readonly name="lease_rate" id="l_rate" placeholder="Lease Rate" id="input-email" class="form-control" required/>
+                                        <input type="text" readonly name="lease_rate" id="l_rate" value="<?php echo $lease_rate;?>" placeholder="Lease Rate" id="input-email" class="form-control" required/>
                                     </div>
                                     <div class="form-group required">
                                         <label class="control-label" for="input-email">Fixed Rental:</label>

@@ -8,7 +8,7 @@ if (mysqli_connect_errno()) {
 }
 
 if (isset($_POST['register_lease']) || isset($_POST['register_pawn'])) {
-    
+
     global $conn;
     $cus_salutation = $_POST['cus_salutation'];
     $cus_fullname = $_POST['cus_fullname'];
@@ -26,11 +26,13 @@ if (isset($_POST['register_lease']) || isset($_POST['register_pawn'])) {
     $cus_addr_map_link = $_POST['cus_addr_map_link'];
     $reg_date = $_POST['reg_date'];
     $cus_status = "1";
-    
+
     echo $cus_salutation;
-    echo $cus_fullname;echo $cus_position;echo $cus_emp_address;
-    
-    
+    echo $cus_fullname;
+    echo $cus_position;
+    echo $cus_emp_address;
+
+
 //over-customer
 
     $cus_bhalf_name = $_POST['cus_hhalf_name'];
@@ -348,7 +350,7 @@ VALUES
     $vehicle_type = $_POST['vehicle_type'];
     $vehicle_code = $_POST['vehicle_code'];
 
-    $se6_1 = $_POST['vehicle_no1'];
+    $se6_1 = $_POST['service_code'];
     $se6_2 = $_POST['vehicle_no2'];
 
     $vehicle_no = $se6_1 . "-" . $se6_2;
@@ -359,7 +361,7 @@ VALUES
     $fixed_rate = $_POST['fixed_rate'];
     $cbo_loan_duration = $_POST['cbo_loan_duration'];
     $loan_description = $_POST['loan_description'];
-    $installment=$_POST['loan_description'];
+    $installment = $_POST['loan_description'];
 
     $land_service_no = $_POST['service_no'];
     $land_cbopayment = $_POST['cbopayment'];
@@ -372,14 +374,13 @@ VALUES
     //land service para
 
     if (isset($_POST['cbopayment']) == "bike") {
-        
-
 
         $sql_query_service_add_bike = "INSERT INTO service(
         ser_number,
         cbopayment,
         ser_caty,
         ser_vbrand,
+        ser_vtype,
         ser_v_code,
         ser_v_d_number,
         ser_v_d_modelyear,
@@ -393,7 +394,8 @@ VALUES
         ser_instalment,
         refrence_person,
         ser_status,
-        cus_nic
+        cus_nic,
+        land_reg_date
         ) 
         VALUES
           (
@@ -401,6 +403,7 @@ VALUES
         '$cbopayment',
         '$cbopayment',
         '$vehicle_brand',
+        '$vehicle_type',
         '$vehicle_code',
         '$vehicle_no',
         '$model_year',
@@ -414,14 +417,15 @@ VALUES
         '$installment',
         '" . $_SESSION['useremail'] . "',
         '1',
-        '$cus_nic'
+        '$cus_nic',
+        'None'
             ) ;
           ";
 
         $runquery_sql_query_service_add = mysqli_query($conn, $sql_query_service_add_bike);
     } else if (isset($_POST['cbopayment']) == "twheel") {
 
-      
+
 
 
         $sql_query_service_add_twheel = "INSERT INTO service(
@@ -429,6 +433,7 @@ VALUES
         cbopayment,
         ser_caty,
         ser_vbrand,
+        ser_vtype,
         ser_v_code,
         ser_v_d_number,
         ser_v_d_modelyear,
@@ -439,10 +444,11 @@ VALUES
         ser_duration,
         ser_date,
         ser_details,
-       ser_instalment,
+        ser_instalment,
         refrence_person,
         ser_status,
-        cus_nic
+        cus_nic,
+        land_reg_date
         ) 
         VALUES
           (
@@ -450,6 +456,7 @@ VALUES
         '$cbopayment',
         '$cbopayment',
         'No Brand',
+        'No Type',
         '$vehicle_code',
         '$vehicle_no',
         'No Model Year',
@@ -463,33 +470,35 @@ VALUES
         '$installment',
         '" . $_SESSION['useremail'] . "',
         '1',
-        '$cus_nic'
+        '$cus_nic',
+            'None'
           ) ;
         ";
     } else if (isset($_POST['cbopayment']) == "land") {
 
-       
+
 
         $sql_query_service_add_land = "INSERT INTO service(
-      ser_number,
-      cbopayment,
-      ser_caty,
-      ser_vbrand,
-      ser_v_code,
-      ser_v_d_number,
-      ser_v_d_modelyear,
-      ser_leserate,
-      ser_land_pond_amount,
-      ser_period,
-      ser_fixedrental,
-      ser_duration,
-      ser_date,
-      ser_details,
-      ser_instalment,
-      refrence_person,
-      ser_status,
-      cus_nic,
-      land_reg_date
+        ser_number,
+        cbopayment,
+        ser_caty,
+        ser_vbrand,
+        ser_vtype,
+        ser_v_code,
+        ser_v_d_number,
+        ser_v_d_modelyear,
+        ser_leserate,
+        ser_land_pond_amount,
+        ser_period,
+        ser_fixedrental,
+        ser_duration,
+        ser_date,
+        ser_details,
+        ser_instalment,
+        refrence_person,
+        ser_status,
+        cus_nic,
+        land_reg_date
 ) 
 VALUES
   (
@@ -497,17 +506,18 @@ VALUES
         '$cbopayment',
         '$cbopayment',
         'No Brand',
+        'No Type',
         'No Code',
         '$deed_no',
         'No Model Year',
         '$lease_rate',
         '$land_pawn_amount',
-        'No Period',
         '$cbo_year',
+        '$fixed_rate',
         '$cbo_loan_duration',
         '$reg_date',
         '$loan_description',
-        'No Service Installment',
+        'None',
         '" . $_SESSION['useremail'] . "',
         '1',
         '$cus_nic',
@@ -548,13 +558,44 @@ VALUES
 
     if ($runquery_cus || $runquery_cus_wf || $runquery_ger || $runquery_ger_wf || $runquery_cus_real_ho || $runquery_cus_real_ot || $runquery_cus_bank1 || $runquery_cus_bank2 || $runquery_cus_bank3) {
         echo 'Customer Successfully Registered!';
+
+
+        echo $cbopayment.'<br>';
+        echo $vehicle_service_no.'<br>';
+        echo $vehicle_brand.'<br>';
+        echo $vehicle_type.'<br>';
+        echo $vehicle_code.'<br>';
+
+        echo $se6_1.'<br>';
+        echo $se6_2.'<br>';
+
+        echo $vehicle_no.'<br>';
+        //vehicle service para
+        //land service para
+        echo $model_year.'<br>';
+        echo $lease_rate.'<br>';
+        echo $fixed_rate.'<br>';
+        echo $cbo_loan_duration.'<br>';
+        echo $loan_description.'<br>';
+        echo $installment.'<br>';
+
+        echo $land_service_no.'<br>';
+        echo $land_cbopayment.'<br>';
+        echo $se_l_ser_caty.'<br>';
+        echo $deed_no.'<br>';
+        echo $pawn_rate.'<br>';
+        echo $cbo_year.'<br>';
+        echo $land_pawn_amount.'<br>';
+        echo $land_reg_date.'<br>';
+        echo $_SESSION['useremail'].'<br>';
+        echo $cus_nic.'<br>';
 //echo '<script>alert("Successs);</script>';
 //echo '<script type="text/javascript">
 //$(document).ready(function(){
 //$("#second").load("../customer/customer_registration.php");
 //});
 //</script>';
-        header('Location:../customer/customer_registration.php');
+//        header('Location:../customer/customer_registration.php');
     } else {
         echo "Error Registration";
     }

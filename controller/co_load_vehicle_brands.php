@@ -11,7 +11,6 @@ function load_vehicle_brands() {
         $vehicle_brand = $row_vehicle_brand['brand'];
         echo "<option value='$vehicle_brand_id'>$vehicle_brand</option>";
     }
-    echo "<option value='other'>Other Brand</option>";
     }
 function load_land_pawn_amounts(){
     require_once '../db/mysqliConnect.php';
