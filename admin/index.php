@@ -45,7 +45,7 @@
                                 <img class="panelimage" src="../assets/images/admin/user management.png"/>
                             </div>
                             <div class="list-group">
-                                <a href="" style="text-decoration: none;"><button type="button" class="list-group-item" id="listButton">Create New User Account</button></a>
+                                <a href="../admin/user_management/user_management.php" style="text-decoration: none;"><button type="button" class="list-group-item" id="listButton">Create New User Account</button></a>
                                 <a href="" style="text-decoration: none;"><button type="button" class="list-group-item" id="listButton">Create New Administrator Account</button></a>
                                 <a href="" style="text-decoration: none;"><button type="button" class="list-group-item" id="listButton">View User Accounts</button></a>
                                 <a href="" style="text-decoration: none;"><button type="button" class="list-group-item" id="listButton">Update User Account</button></a>

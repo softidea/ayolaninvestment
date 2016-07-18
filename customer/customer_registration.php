@@ -434,7 +434,7 @@ if (!isset($_SESSION['user_email'])) {
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Date of Birth (mm/dd/yyyy):</label>
-                                            <input type="date" id="cus_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" name="cus_bhalf_dob" value="<?php echo $reg_date;?>" placeholder="Date of Birth"   class="form-control" />
+                                            <input type="date" id="cus_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" name="cus_bhalf_dob" value="<?php echo $reg_date; ?>" placeholder="Date of Birth"   class="form-control" />
                                         </div>
 
                                         <div class="form-group  ">
@@ -538,7 +538,7 @@ if (!isset($_SESSION['user_email'])) {
                                         </div>
                                         <div class="form-group  ">
                                             <span style="color:red;">*</span><label class="control-label">Date of Birth (mm/dd/yyyy):</label>
-                                            <input type="date" id="g_bhalf_dob" name="gua_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date;?>" value="<?php echo $reg_date;?>" placeholder="Date of Birth" class="form-control"/>
+                                            <input type="date" id="g_bhalf_dob" name="gua_bhalf_dob" min="1900-12-31" max="<?php echo $reg_date; ?>" value="<?php echo $reg_date; ?>" placeholder="Date of Birth" class="form-control"/>
                                         </div>
 
                                         <div class="form-group  ">
@@ -693,7 +693,6 @@ if (!isset($_SESSION['user_email'])) {
                                             <input type="text" name="product_image"  />
                                         </div>
                                     </fieldset>
-
                                 </div>
 
                                 <!--Start.Leasing Information Details-->
@@ -706,7 +705,7 @@ if (!isset($_SESSION['user_email'])) {
                                                     <option value="HOR">HOR</option>
                                                     <option value="BUL">BUL</option>
                                                 </select>
-                                                <input type="text" name="service_no" id="sno" placeholder="Service No" class="form-control" maxlength="4" style="width: 59%;" required/>
+                                                <input type="text" name="vehicle_no2" id="sno" placeholder="Service No" class="form-control" maxlength="4" style="width: 59%;" required/>
                                             </div>
                                             <div class="form-group required">
                                                 <label class="control-label"   id="">Select Category:</label>
