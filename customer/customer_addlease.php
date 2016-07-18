@@ -6,10 +6,11 @@ if (!isset($_SESSION['user_email'])) {
 }
 ?>
 <?php
-if (isset($_POST['customer_continue'])) {
-    $cus_nic = $_SESSION['cus_nic'] = filter_input(INPUT_POST, 'cus_nic');
-    $cus_name = $_SESSION['cus_name'] = filter_input(INPUT_POST, 'cus_name');
-} else if(!isset($_POST['customer_continue'])){
+if (isset($_SESSION['cus_nic'])) {
+    $cus_nic = $_SESSION['cus_nic'];
+    $cus_name = $_SESSION['cus_name'];
+} 
+else{
     $cus_nic = "";
     $cus_name = "";
 }
@@ -370,7 +371,7 @@ if (isset($_POST['customer_continue'])) {
                                     <fieldset id="account">
                                         <legend>Leasing Details</legend>
                                         <div class="form-group required">
-                                            <label class="control-label" for="input-email">Service No:</label>
+                                            <label class="control-label">Service No:</label>
                                             <div class="form-inline required">
                                                 <select name="service_code" id="scode" class="form-control" onchange="" style="width: 40%;">
                                                     <option value="HOR">HOR</option>
@@ -380,7 +381,7 @@ if (isset($_POST['customer_continue'])) {
                                             </div>
                                         </div>
                                         <div class="form-group required">
-                                            <label class="control-label" for="input-email">Select Category:</label>
+                                            <label class="control-label">Select Category:</label>
                                             <select name="vehicle_category" id="v_cat" class="form-control" onchange="set_vehicle_div(this.value);">
                                                 <option value="0">~~Select Category~~</option>
                                                 <option value="1">Bike</option>
@@ -408,7 +409,7 @@ if (isset($_POST['customer_continue'])) {
                                         <div class="form-inline required">
                                             <input type="text" name="vehicle_code" style="text-transform: uppercase;" id="v_no_code" placeholder="Ex:ME" id="input-email" class="form-control" required/>
                                             <label class="control-label"> - </label>
-                                            <input type="text" name="v_no_num" maxlength="4" id="v_no_num" placeholder="Ex:2558" id="input-email" class="form-control" required/>
+                                            <input type="text" name="v_no_num" maxlength="4" id="v_no_num" placeholder="Ex:2558" class="form-control" required/>
                                             <br>
                                         </div>
                                         <div class="form-group required">
@@ -443,7 +444,7 @@ if (isset($_POST['customer_continue'])) {
                                         </div>
                                         <div class="form-group required">
                                             <label class="control-label">Service Installment:</label>
-                                            <input type="text" name="ser_installment" id="ser_installment" value="<?php echo $fixed_rate; ?>" placeholder="Fix Rate" id="input-email" class="form-control" required readonly/>
+                                            <input type="text" name="ser_installment" id="ser_installment" value="<?php echo $fixed_rate; ?>" placeholder="Fix Rate" class="form-control" required readonly/>
                                         </div>
                                         <div class="form-group required">
                                             <label class="control-label" for="input-email">Description of the Loan:</label>
