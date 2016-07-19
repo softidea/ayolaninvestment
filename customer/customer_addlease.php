@@ -328,7 +328,7 @@ else{
         </script>
     </head>
     <body>
-        <?php include '../assets/include/navigation_bar.php'; ?>
+        <?php include '../assets/include/navigation_bar.php';?>
         <!--Lease Registration Panel-->
         <div class="container" style="margin-top: 80px;display: block;" id="one">
             <form action="../controller/co_customer.php" method="POST" enctype="multipart/form-data">

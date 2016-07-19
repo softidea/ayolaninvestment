@@ -526,7 +526,9 @@ VALUES (
 // saving gurantors~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         if ($save_savings && $save_mobile && $save_daily_loan && $save_property1 && $save_property2 && $save_pawn && $save_g1 && $save_g2) {
-            echo "Customer and Pawn Succesfully Saved";
+            echo "<script>alert('Customer Land Pawn has been sussfully added');</script>";
+            $_SESSION['cus_nic']="";
+            $_SESSION['cus_name']="";
         } else {
             echo "Error while Saving";
         }

@@ -344,7 +344,6 @@ if (!isset($_SESSION['user_email'])) {
                 }
             };
         </script>
-
     </head>
     <body>
 

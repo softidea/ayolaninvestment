@@ -35,16 +35,16 @@
                                 <fieldset id="account">
                                     <legend>Customer Information</legend>
                                     <div class="form-group required">
-                                        <span style="color:red;">*</span><label class="control-label" for="input-email">Customer NIC:</label>
+                                        <span style="color:red;">*</span><label class="control-label">Customer NIC:</label>
                                         <div class="form-inline required">
-                                            <input type="text" name="customer_nic" id="cus_nic" placeholder="Enter Customer NIC" class="form-control" style="width: 85%;" required/>
+                                            <input type="text" name="customer_nic" id="customer_nic" placeholder="Enter Customer NIC" class="form-control" style="width: 85%;" required/>
                                             <button type="button" id="cservicebtn" class="btn btn">Search</button>
                                         </div>
                                     </div>
                                     <div class="form-group required">
-                                        <span style="color:red;">*</span><label class="control-label" for="input-email">Customer Telephone:</label>
+                                        <span style="color:red;">*</span><label class="control-label">Customer Telephone:</label>
                                         <div class="form-inline required">
-                                            <input type="text" name="customer_search_bar" id="customer_searchbar" placeholder="Enter Customer Telephone" class="form-control" style="width: 85%;" required/>
+                                            <input type="text" name="customer_tp" id="customer_tp" placeholder="Enter Customer Telephone" class="form-control" style="width: 85%;" required/>
                                             <button type="button" id="cservicebtn" class="btn btn">Search</button>
                                         </div>
                                     </div>

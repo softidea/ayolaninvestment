@@ -257,7 +257,7 @@ if (isset($_POST['lease_reg'])) {
     $cus_daily_loan_facilities = $_SESSION['cus_daily_loan_facilities'];
     $cus_daily_loan_account_no = $_SESSION['cus_daily_loan_account_no'];
 
-    
+
     $service_code = $_SESSION['service_code'] = filter_input(INPUT_POST, 'service_code');
     $service_no = $_SESSION['service_no'] = filter_input(INPUT_POST, 'service_no');
     $service_number = $service_code . "-" . $service_no;
@@ -547,13 +547,14 @@ VALUES (
         $save_g2 = mysqli_query($conn, $query_guarantor2);
 
 // saving gurantors~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        
-        if($save_savings && $save_mobile && $save_daily_loan && $save_property1 && $save_property2 && $save_lease && $save_g1 && $save_g2){
-            echo "Customer and Lease Succesfully Saved";
-        }else{
+
+        if ($save_savings && $save_mobile && $save_daily_loan && $save_property1 && $save_property2 && $save_lease && $save_g1 && $save_g2) {
+            echo "<script>alert('Customer Lease has been sussfully added');</script>";
+            $_SESSION['cus_nic'] = "";
+            $_SESSION['cus_name'] = "";
+        } else {
             echo "Error while Saving";
         }
-        
     } else {
         echo "Error";
     }
