@@ -13,6 +13,7 @@ $c_nic = filter_input(INPUT_GET, 'c_nic');
 $s_no = filter_input(INPUT_GET, 's_no');
 $service_no = filter_input(INPUT_GET, 'service_no');
 $payment = filter_input(INPUT_GET, 'payment');
+$sno_begin_ins = filter_input(INPUT_GET, 'sno_begin_ins');
 
 
 //loading customer details
@@ -71,27 +72,64 @@ if ($service_no != "" && $service_no != null) {
     $sql_query = "SELECT * FROM ser_installment WHERE ser_number='$service_no'";
     $run_query = mysqli_query($conn, $sql_query);
     if (mysqli_num_rows($run_query) > 0) {
-        while ($row = mysqli_fetch_array($run_query)){
-        
-        $installment=$row['int_id'];
+        while ($row = mysqli_fetch_array($run_query)) {
+
+            $installment = $row['int_id'];
 //        $ser_number=$row['ser_number'];
-        $date=$row['date'];
-        $paid_date=$row['paid_date'];
-        $payment=$row['payment'];
-        $customer_due=$row['customer_due'];
-        $company_due=$row['company_due'];
-            
-        echo"<tr>";
-        echo "<td>$installment</td>";
-        echo "<td>$date</td>";
-        echo "<td>$paid_date</td>";
-        echo "<td>$payment</td>";
-        echo "<td>$customer_due</td>";
-        echo "<td>$company_due</td>";
-        echo"</tr>";
+            $date = $row['date'];
+            $paid_date = $row['paid_date'];
+            $payment = $row['payment'];
+            $customer_due = $row['customer_due'];
+            $company_due = $row['company_due'];
+
+            echo"<tr>";
+            echo "<td>$installment</td>";
+            echo "<td>$date</td>";
+            echo "<td>$paid_date</td>";
+            echo "<td>$payment</td>";
+            echo "<td>$customer_due</td>";
+            echo "<td>$company_due</td>";
+            echo"</tr>";
+        }
+    } else {
+
+        echo "No Installment at this moment";
     }
-} else {
-    echo "No Installment at this moment";
 }
+if ($sno_begin_ins != "" && $sno_begin_ins != null) {
+    global $conn;
+    $sql_query = "SELECT * FROM service WHERE ser_number='$sno_begin_ins'";
+    $run_query = mysqli_query($conn, $sql_query);
+    if (mysqli_num_rows($run_query) > 0) {
+        if ($row = mysqli_fetch_assoc($run_query)) {
+            $installment = $row['installment'];
+            $service_date = $row['ser_date'];
+
+            list($year, $month, $date) = explode("-", $service_date);
+            $fix_date=  intval($date);
+            $fix_month=  intval($month);
+            
+            if ($fix_date>0 && $fix_date<=5) {
+                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '5';
+                echo $installment_date . "#" . $installment;
+            } else if ($fix_date>5 && $fix_date<=10) {
+                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '10';
+                echo $installment_date . "#" . $installment;
+            } else if ($fix_date>10 && $fix_date<=15) {
+                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '15';
+                echo $installment_date . "#" . $installment;
+            } else if ($fix_date>15 && $fix_date<=20) {
+                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '20';
+                echo $installment_date . "#" . $installment;
+            } else if ($fix_date>20 && $fix_date<=25) {
+                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '25';
+                echo $installment_date . "#" . $installment;
+            } else if ($fix_date>25 && $fix_date<=31) {
+                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '25';
+                echo $installment_date . "#" . $installment;
+            }
+        }
+    }
 }
+    
 //loading service installments

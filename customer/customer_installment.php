@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
-    date_default_timezone_set('Asia/Colombo');
-    $current_date=date("Y-m-d");
+date_default_timezone_set('Asia/Colombo');
+$current_date = date("Y-m-d");
 ?>
 <html>
     <head>
@@ -107,7 +107,7 @@
                 xmlhttp.open("GET", "../controller/co_load_installment_customer.php?s_no=" + sno, true);
                 xmlhttp.send();
             }
-            
+
             function loadServiceInstallments() {
                 var sno = document.getElementById('service_combo').value;
                 //alert(sno);
@@ -120,24 +120,48 @@
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
                     {
-                       if(xmlhttp.responseText=="No Installment at this moment"){
-                           alert(xmlhttp.responseText);
-                           document.getElementById('installment_result_panel').innerHTML="";
-                       }
-                       else{
-                           alert(xmlhttp.responseText);
-                           document.getElementById('tbl_installment_body').innerHTML="";
-                           document.getElementById('tbl_installment_body').innerHTML=xmlhttp.responseText;
-                       }
+                        if (xmlhttp.responseText == "No Installment at this moment") {
+                            alert(xmlhttp.responseText);
+                            loadBottomBeginInstallment();
+                            document.getElementById('installment_result_panel').innerHTML = "";
+                        }
+                        else
+                        {
+                            alert(xmlhttp.responseText);
+                            document.getElementById('tbl_installment_body').innerHTML = "";
+                            document.getElementById('tbl_installment_body').innerHTML = xmlhttp.responseText;
+                        }
                     }
                 }
                 xmlhttp.open("GET", "../controller/co_load_installment_customer.php?service_no=" + sno, true);
                 xmlhttp.send();
             }
+            function loadBottomBeginInstallment() {
+                var ser_no = document.getElementById('service_combo').value;
+                //alert(sno);
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                    {
+                        alert(xmlhttp.responseText);
+                        var value = xmlhttp.responseText;
+                        var result_arr = value.split("#");
+                        document.getElementById('payable_date').value = result_arr[0];
+                        document.getElementById('payble_installment').value = result_arr[1].".00";
+                    }
+                }
+                xmlhttp.open("GET", "../controller/co_load_installment_customer.php?sno_begin_ins=" + ser_no, true);
+                xmlhttp.send();
+            }
         </script>
         <script type="text/javascript">
-            function saveInstallment(){
-                var payment=document.getElementById('payment_submit').value;
+            function saveInstallment() {
+                var payment = document.getElementById('payment_submit').value;
                 if (window.XMLHttpRequest) {
                     // code for IE7+, Firefox, Chrome, Opera, Safari
                     xmlhttp = new XMLHttpRequest();
@@ -275,30 +299,6 @@
                                                         <td>736.00</td>
                                                         <td>00.00</td>
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">4</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">5</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -332,11 +332,19 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-2">
                                                             <div class="form-group required">
                                                                 <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Paid Date:</label>
-                                                                    <input type="date" name="paid_date" id="paid_date" value="<?php echo $current_date;?>" placeholder="Payment" class="form-control" required/>
+                                                                    <label class="control-label">Payable Date:</label>
+                                                                    <input type="text" readonly name="payable_date" id="payable_date" placeholder="Payable Date" class="form-control" required/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <div class="form-group required">
+                                                                <div class="form-group required">
+                                                                    <label class="control-label">Paid Date:</label>
+                                                                    <input type="date" name="paid_date" id="paid_date" value="<?php echo $current_date; ?>" placeholder="Paid Date" class="form-control" required/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -347,7 +355,7 @@
                                                         <div class="col-sm-3">
                                                             <div class="form-group required">
                                                                 <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Payable Installment:</label>
+                                                                    <label class="control-label">Payable Installment:</label>
                                                                     <input type="text" disabled name="fname" id="fname" value="5736.00" placeholder="Payable Installment" id="input-email" class="form-control" required/>
                                                                 </div>
                                                             </div>
