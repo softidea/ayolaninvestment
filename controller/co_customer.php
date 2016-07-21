@@ -264,8 +264,10 @@ if (isset($_POST['lease_reg'])) {
     $vehicle_category = $_SESSION['vehicle_category'] = filter_input(INPUT_POST, 'vehicle_category');
     $vehicle_brand = $_SESSION['vehicle_brand'] = filter_input(INPUT_POST, 'vehicle_brand');
     $vehicle_type = $_SESSION['vehicle_type'] = filter_input(INPUT_POST, 'vehicle_type');
-    $vehicle_code = $_SESSION['vehicle_code'] = filter_input(INPUT_POST, 'vehicle_code');
+    $vehicle_code = $_SESSION['v_code'] = filter_input(INPUT_POST, 'v_code');
     $v_no_num = $_SESSION['v_no_num'] = filter_input(INPUT_POST, 'v_no_num');
+    $v_no_code=$_SESSION['v_no_code']=  filter_input(INPUT_GET, 'v_no_code');
+    $vehicle_num=$v_no_code."-".$v_no_num;
     $model_year = $_SESSION['model_year'] = filter_input(INPUT_POST, 'model_year');
     $lease_rate = $_SESSION['lease_rate'] = filter_input(INPUT_POST, 'lease_rate');
     $fixed_rate = $_SESSION['fixed_rate'] = filter_input(INPUT_POST, 'fixed_rate');
@@ -465,7 +467,7 @@ VALUES (
         '$vehicle_brand',
         '$vehicle_type',
         '$vehicle_code',
-        '$v_no_num',
+        '$vehicle_num',
         '$model_year',
         '$lease_rate',
         '$fixed_rate',

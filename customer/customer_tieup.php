@@ -18,6 +18,257 @@
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../assets/css/customer_service.css">
         <link rel="icon" href="favicon.ico">
+        <script type="text/javascript">
+            function searchCustomerbyNIC() {
+                var cus_nic = document.getElementById('customer_nic').value;
+                if (cus_nic !== "" && cus_nic !== null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            //alert(xmlhttp.responseText);
+                            var value = xmlhttp.responseText;
+                            var result_arr = value.split("#");
+                            document.getElementById('customer_tp').value = result_arr[0];
+                            document.getElementById('customer_name').value = result_arr[1];
+                            document.getElementById('customer_address').value = result_arr[2];
+                            loadCustomerServiceNobyNIC(cus_nic);
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?cus_nic=" + cus_nic, true);
+                    xmlhttp.send();
+                }
+
+            }
+            function searchCustomerbyTP() {
+                var cus_tp = document.getElementById('customer_tp').value;
+                //alert(cus_tp);
+                if (cus_tp !== "" && cus_tp !== null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            // alert(xmlhttp.responseText);
+                            var value = xmlhttp.responseText;
+                            var result_arr = value.split("#");
+                            document.getElementById('customer_nic').value = result_arr[0];
+                            document.getElementById('customer_name').value = result_arr[1];
+                            document.getElementById('customer_address').value = result_arr[2];
+                            loadCustomerServiceNobyTP(cus_tp);
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?cus_tp=" + cus_tp, true);
+                    xmlhttp.send();
+                }
+            }
+            function loadCustomerServiceNobyNIC(nic) {
+                if (nic !== "" && nic !== null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            // alert(xmlhttp.responseText);
+                            var result = xmlhttp.responseText;
+                            document.getElementById('cbo_service_search').innerHTML = "";
+                            document.getElementById('cbo_service_search').innerHTML = result;
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?c_s_nic=" + nic, true);
+                    xmlhttp.send();
+                }
+            }
+            function loadCustomerServiceNobyTP(tp) {
+                if (tp !== "" && tp !== null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            // alert(xmlhttp.responseText);
+                            var result = xmlhttp.responseText;
+                            document.getElementById('cbo_service_search').innerHTML = "";
+                            document.getElementById('cbo_service_search').innerHTML = result;
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?c_s_tp=" + tp, true);
+                    xmlhttp.send();
+                }
+            }
+            function loadServiceDetailsCustomerSide(value) {
+                if (value !== "" && value !== null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            var val = xmlhttp.responseText;
+                            alert(val);
+                            var result_arr = val.split("#");
+                            document.getElementById('service_rental').value = result_arr[0];
+                            document.getElementById('service_period').value = result_arr[1];
+                            document.getElementById('cus_installment').value = result_arr[2];
+                            loadGurantorNICs(value);
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?ser_value=" + value, true);
+                    xmlhttp.send();
+                }
+            }
+
+            function loadServiceIntallmentDetailsCus(value) {
+                if (value !== "" && value !== null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            var val = xmlhttp.responseText;
+                            alert(val);
+                            var result_arr = val.split("#");
+                            document.getElementById('service_rental').value = result_arr[0];
+                            document.getElementById('service_period').value = result_arr[1];
+                            document.getElementById('cus_installment').value = result_arr[2];
+                            loadGurantorNICs(value);
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?ser_value_cus_installment=" + value, true);
+                    xmlhttp.send();
+                }
+            }
+
+            function loadServiceGurantors(value) {
+                if (value !== "" && value !== null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            var val = xmlhttp.responseText;
+                            //alert(val);
+                            var result_arr = val.split("#");
+                            document.getElementById('service_rental').value = result_arr[0];
+                            document.getElementById('service_period').value = result_arr[1];
+                            document.getElementById('cus_installment').value = result_arr[2];
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?ser_value=" + value, true);
+                    xmlhttp.send();
+                }
+            }
+            function loadGurantorNICs(value) {
+                if (value != "" && value != null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            var val = xmlhttp.responseText;
+                            alert(val);
+                            document.getElementById('cbo_customer_nic').innerHTML = "";
+                            document.getElementById('cbo_customer_nic').innerHTML = val;
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?ser_no_g=" + value, true);
+                    xmlhttp.send();
+                }
+            }
+            function loadGuratorDetails(value) {
+                if (value != "" && value != null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            var val = xmlhttp.responseText;
+                            alert(val);
+                            var result_arr = val.split("#");
+                            document.getElementById('guarantor_tp').value = result_arr[0];
+                            document.getElementById('guarantor_name').value = result_arr[1];
+                            document.getElementById('guarantor_address').value = result_arr[2];
+                            loadServiceNoG_as_Cus(value);
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?gua_nic=" + value, true);
+                    xmlhttp.send();
+                }
+            }
+            function loadServiceNoG_as_Cus(value) {
+                if (value != "" && value != null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            var val = xmlhttp.responseText;
+                            if (val == "No Services Found") {
+                                alert(val);
+                            } else {
+                                document.getElementById('cbo_service_as_customer').innerHTML = "";
+                                document.getElementById('cbo_service_as_customer').innerHTML = val;
+                            }
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?g_as_c_nic=" + value, true);
+                    xmlhttp.send();
+                }
+            }
+            function searchG_as_Cus_Service_Detils(value) {
+                if (value != "" && value != null) {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            var val = xmlhttp.responseText;
+                            if (val == "No Services Found") {
+                                alert(val);
+                            } else {
+                                document.getElementById('cbo_service_as_customer').innerHTML = "";
+                                document.getElementById('cbo_service_as_customer').innerHTML = val;
+                            }
+                        }
+                    }
+                    xmlhttp.open("GET", "../controller/co_customer_tieup.php?g_as_c_nic=" + value, true);
+                    xmlhttp.send();
+                }
+            }
+        </script>
     </head>
     <body>
         <?php include '../assets/include/navigation_bar.php'; ?>
@@ -38,27 +289,27 @@
                                         <span style="color:red;">*</span><label class="control-label">Customer NIC:</label>
                                         <div class="form-inline required">
                                             <input type="text" name="customer_nic" id="customer_nic" placeholder="Enter Customer NIC" class="form-control" style="width: 85%;" required/>
-                                            <button type="button" id="cservicebtn" class="btn btn">Search</button>
+                                            <button type="button" id="cservicebtn" class="btn btn" onclick="searchCustomerbyNIC();">Search</button>
                                         </div>
                                     </div>
                                     <div class="form-group required">
                                         <span style="color:red;">*</span><label class="control-label">Customer Telephone:</label>
                                         <div class="form-inline required">
                                             <input type="text" name="customer_tp" id="customer_tp" placeholder="Enter Customer Telephone" class="form-control" style="width: 85%;" required/>
-                                            <button type="button" id="cservicebtn" class="btn btn">Search</button>
+                                            <button type="button" id="cservicebtn" class="btn btn" onclick="searchCustomerbyTP();">Search</button>
                                         </div>
                                     </div>
                                     <div class="form-group required">
-                                        <label class="control-label" for="input-email">Customer Name:</label>
-                                        <input type="text" readonly name="customer_name" id="cus_name"  placeholder="Customer Name" class="form-control" required/>
+                                        <label class="control-label">Customer Name:</label>
+                                        <input type="text" readonly name="customer_name" id="customer_name"  placeholder="Customer Name" class="form-control" required/>
                                     </div>
                                     <div class="form-group required">
-                                        <label class="control-label" for="input-email">Permanent Address:</label>
-                                        <input type="text" readonly name="customer_address" id="cus_address" placeholder="Permanent Address" class="form-control" required/>
+                                        <label class="control-label">Permanent Address:</label>
+                                        <input type="text" readonly name="customer_address" id="customer_address" placeholder="Permanent Address" class="form-control" required/>
                                     </div>
                                     <div class="form-group required">
-                                        <label class="control-label" for="input-email">Service No:</label>
-                                        <select name="cbo_service_search" id="cboservice" class="form-control" required>
+                                        <label class="control-label">Service No:</label>
+                                        <select name="cbo_service_search" id="cbo_service_search" class="form-control" required onchange="loadServiceDetailsCustomerSide(this.value);">
                                             <option value=""> --- Please Select Service --- </option>
                                             <option value="">HOR-23432</option>
                                             <option value="">HOR-324</option>
@@ -66,20 +317,20 @@
                                     </div>
                                     <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label" for="input-email">Service Rental:</label>
-                                            <input type="text" readonly name="service_rental" id="servicerent" value="" placeholder="Service Rental" id="input-email" class="form-control" required/>
+                                            <label class="control-label">Service Rental:</label>
+                                            <input type="text" readonly name="service_rental" id="service_rental" placeholder="Service Rental" class="form-control" required/>
                                         </div>
                                     </div>
                                     <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label" for="input-email">Service Period:</label>
-                                            <input type="text" readonly name="service_period" id="serviceperiod" value="" placeholder="Service Period" id="input-email" class="form-control" required/>
+                                            <label class="control-label">Service Period:</label>
+                                            <input type="text" readonly name="service_period" id="service_period" placeholder="Service Period" class="form-control" required/>
                                         </div>
                                     </div>
                                     <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label" for="input-email">Installment:</label>
-                                            <input type="text" readonly name="installment" id="installemnt_des" value="" placeholder="Installment" id="input-email" class="form-control" required/>
+                                            <label class="control-label">Installment:</label>
+                                            <input type="text" readonly name="cus_installment" id="cus_installment" placeholder="Installment" class="form-control" required/>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -89,45 +340,45 @@
                                     <fieldset id="account">
                                         <legend>Guarantor Information</legend>
                                         <div class="form-group required">
-                                            <span style="color:red;">*</span><label class="control-label" for="input-email">Guarantor NIC:</label>
-                                            <input type="text" readonly name="customer_nic" id="cus_nic" placeholder="Guarantor NIC" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <span style="color:red;">*</span><label class="control-label" for="input-email">Customer Telephone:</label>
-                                            <input type="text" readonly name="customer_search_bar" id="customer_searchbar" placeholder="Customer Telephone" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Customer Name:</label>
-                                            <input type="text" readonly name="customer_name" id="cus_name"  placeholder="Customer Name" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Permanent Address:</label>
-                                            <input type="text" readonly name="customer_address" id="cus_address" placeholder="Permanent Address" class="form-control" required/>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label class="control-label" for="input-email">Services as a Customer:</label>
-                                            <select name="cbo_service_search" id="cboservice" class="form-control" required>
+                                            <label class="control-label">Guarantor NIC's:</label>
+                                            <select name="cbo_customer_nic" id="cbo_customer_nic" class="form-control" required onchange="loadGuratorDetails(this.value);">
                                                 <option value=""> --- Please Select --- </option>
-                                                <option value="">HOR-23432</option>
-                                                <option value="">HOR-324</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group required">
+                                            <span style="color:red;">*</span><label class="control-label">Guarantor Telephone:</label>
+                                            <input type="text" readonly name="guarantor_tp" id="guarantor_tp" placeholder="Customer Telephone" class="form-control" required/>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label class="control-label">Guarantor Name:</label>
+                                            <input type="text" readonly name="guarantor_name" id="guarantor_name"  placeholder="Customer Name" class="form-control" required/>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label class="control-label">Permanent Address:</label>
+                                            <input type="text" readonly name="guarantor_address" id="guarantor_address" placeholder="Permanent Address" class="form-control" required/>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label class="control-label">Services as a Customer:</label>
+                                            <select name="cbo_service_as_customer" id="cbo_service_as_customer" class="form-control" required onchange="searchG_as_Cus_Service_Detils(this.value);">
+                                                <option value=""> --- Please Select --- </option>
                                             </select>
                                         </div>
                                         <div class="form-group required">
                                             <div class="form-group required">
-                                                <label class="control-label" for="input-email">Service Rental:</label>
-                                                <input type="text" readonly name="service_rental" id="servicerent" value="" placeholder="Service Rental" id="input-email" class="form-control" required/>
+                                                <label class="control-label">Service Rental:</label>
+                                                <input type="text" readonly name="service_rental_g" id="service_rental_g" placeholder="Service Rental" id="input-email" class="form-control" required/>
                                             </div>
                                         </div>
                                         <div class="form-group required">
                                             <div class="form-group required">
-                                                <label class="control-label" for="input-email">Service Period:</label>
-                                                <input type="text" readonly name="service_period" id="serviceperiod" value="" placeholder="Service Period" id="input-email" class="form-control" required/>
+                                                <label class="control-label">Service Period:</label>
+                                                <input type="text" readonly name="service_period_g" id="service_period_g" placeholder="Service Period" class="form-control" required/>
                                             </div>
                                         </div>
                                         <div class="form-group required">
                                             <div class="form-group required">
-                                                <label class="control-label" for="input-email">Installment:</label>
-                                                <input type="text" readonly name="installment" id="installemnt_des" value="" placeholder="Installment" id="input-email" class="form-control" required/>
+                                                <label class="control-label">Installment:</label>
+                                                <input type="text" readonly name="g_installment" id="g_installment" placeholder="Installment" class="form-control" required/>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -136,9 +387,31 @@
                             <!--Service View Main Panel-->
 
                             <!--Customer Service Loader-->
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <div class="panel panel-default">
                                     <div class="panel-body" style="height: 250px;">
+                                        <label class="control-label">Installment:</label>
+                                        <label class="control-label">Installment:</label>
+                                        <label class="control-label">Installment:</label>
+                                        <label class="control-label">Installment:</label>
+                                        <label class="control-label">Installment:</label>
+                                        <label class="control-label">Installment:</label>
+                                        <label class="control-label">Installment:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body" style="height: 250px;">
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body" style="height: 100px;">
 
 
 

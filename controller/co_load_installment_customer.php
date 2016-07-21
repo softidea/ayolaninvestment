@@ -12,7 +12,7 @@ $customer_nic = filter_input(INPUT_GET, 'cus_nic');
 $c_nic = filter_input(INPUT_GET, 'c_nic');
 $s_no = filter_input(INPUT_GET, 's_no');
 $service_no = filter_input(INPUT_GET, 'service_no');
-$payment=  filter_input(INPUT_GET, 'payment');
+$payment = filter_input(INPUT_GET, 'payment');
 
 
 //loading customer details
@@ -54,11 +54,11 @@ if ($s_no != "" && $s_no != null) {
     $run_query = mysqli_query($conn, $sql_query);
     if (mysqli_num_rows($run_query) > 0) {
         if ($row = mysqli_fetch_assoc($run_query)) {
-            $ser_no = $row['ser_number'];
+            $ser_no = $row['vehicle_no'];
             $ser_date = $row['ser_date'];
-            $fixed_rent = $row['ser_fixedrental'];
-            $install = $row['ser_instalment'];
-            $ser_duration = $row['ser_duration'];
+            $fixed_rent = $row['fix_rate'];
+            $install = $row['installment'];
+            $ser_duration = $row['period'];
 
             echo $ser_no . "#" . $ser_date . "#" . $fixed_rent . "#" . $install . "#" . $ser_duration;
         }
@@ -68,33 +68,30 @@ if ($s_no != "" && $s_no != null) {
 //loading service installments
 if ($service_no != "" && $service_no != null) {
     global $conn;
-    $duration = '0';
-    $sql_duration = "SELECT ser_duration FROM service WHERE ser_number='$service_no'";
-    $run_duration = mysqli_query($conn, $sql_duration);
-    if (mysqli_num_rows($run_duration) > 0) {
-        if ($row = mysqli_fetch_assoc($run_duration)) {
-            $duration = $row['ser_duration'];
-            $duration++;
-        }
-    }
-
     $sql_query = "SELECT * FROM ser_installment WHERE ser_number='$service_no'";
     $run_query = mysqli_query($conn, $sql_query);
     if (mysqli_num_rows($run_query) > 0) {
+        while ($row = mysqli_fetch_array($run_query)){
         
-    } else {
-        echo "No Installments available at this moment for Service";
+        $installment=$row['int_id'];
+//        $ser_number=$row['ser_number'];
+        $date=$row['date'];
+        $paid_date=$row['paid_date'];
+        $payment=$row['payment'];
+        $customer_due=$row['customer_due'];
+        $company_due=$row['company_due'];
+            
+        echo"<tr>";
+        echo "<td>$installment</td>";
+        echo "<td>$date</td>";
+        echo "<td>$paid_date</td>";
+        echo "<td>$payment</td>";
+        echo "<td>$customer_due</td>";
+        echo "<td>$company_due</td>";
+        echo"</tr>";
     }
+} else {
+    echo "No Installment at this moment";
+}
 }
 //loading service installments
-
-
-//save installment
-
-if($payment!="" && $payment!=null){
-    
-    
-    //$sql_query="INSERT INTO ser_installment (ser_number,date,paid_date,payment,customer_due,company_due) VALUES ()";
-}
-
-//save installment

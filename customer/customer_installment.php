@@ -24,7 +24,6 @@
         <link rel="stylesheet" type="text/css" href="../assets/css/installments.css"/>
         <script type="text/javascript">
             function loadInstallmentCustomer() {
-
                 var nic = document.getElementById('cus_nic').value;
 
                 if (window.XMLHttpRequest) {
@@ -78,8 +77,7 @@
                 xmlhttp.send();
 
             }
-            function loadServiceDetails() {
-                var sno = document.getElementById('service_combo').value;
+            function loadServiceDetails(sno) {
                 //alert(sno);
                 if (window.XMLHttpRequest) {
                     // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -109,6 +107,7 @@
                 xmlhttp.open("GET", "../controller/co_load_installment_customer.php?s_no=" + sno, true);
                 xmlhttp.send();
             }
+            
             function loadServiceInstallments() {
                 var sno = document.getElementById('service_combo').value;
                 //alert(sno);
@@ -121,20 +120,15 @@
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
                     {
-                        //alert(xmlhttp.responseText);
-                        if (xmlhttp.responseText == "No Installments available at this moment for Service") {
-                            alert('No Installments available at this moment for Service ' + sno);
-                            document.getElementById('tbl_installment_body').innerHTML = "";
-                            document.getElementById('tbl_installment_body').innerHTML = xmlhttp.responseText;
-                            document.getElementById('custcontinue_print').disabled=true;
-                            document.getElementById('custcontinue_pdf').disabled=true;
-                            document.getElementById('payble_installment').value=document.getElementById('ser_installment').value;
-                        } else {
-                            document.getElementById('tbl_installment_body').innerHTML = "";
-                            document.getElementById('tbl_installment_body').innerHTML = xmlhttp.responseText;
-                            document.getElementById('custcontinue_print').disabled=false;
-                            document.getElementById('custcontinue_pdf').disabled=false;
-                        }
+                       if(xmlhttp.responseText=="No Installment at this moment"){
+                           alert(xmlhttp.responseText);
+                           document.getElementById('installment_result_panel').innerHTML="";
+                       }
+                       else{
+                           alert(xmlhttp.responseText);
+                           document.getElementById('tbl_installment_body').innerHTML="";
+                           document.getElementById('tbl_installment_body').innerHTML=xmlhttp.responseText;
+                       }
                     }
                 }
                 xmlhttp.open("GET", "../controller/co_load_installment_customer.php?service_no=" + sno, true);
@@ -215,16 +209,16 @@
                                     <fieldset id="account">
                                         <div class="form-group required" style="display: block;" id="service_combo_div">
                                             <label class="control-label">Select Service:</label>
-                                            <select name="service_combo" id="service_combo" class="form-control" onchange="loadServiceDetails();">
+                                            <select name="service_combo" id="service_combo" class="form-control" onchange="loadServiceDetails(this.value);">
                                                 <option value='0'>~~Select Service~~</option>
                                             </select>
                                         </div>
                                         <legend>Service Details</legend>
                                         <div class="form-group required" style="display: block;" id="service_text_div">
-                                            <label class="control-label">Service No:</label>
-                                            <div class="form-inline required">
-                                                <input type="text" name="ser_no" id="ser_no" value="" placeholder="Service No" class="form-control" style="width:85%;"required/>
-                                                <input type="button" class="btn btn" id="custcontinue" onclick="loadServices();" value="Search">
+                                            <label class="control-label">Vehicle No:</label>
+                                            <div class="form-group required">
+                                                <input type="text" name="ser_no" id="ser_no" value="" placeholder="Vehicle No" class="form-control" required/>
+<!--                                                <input type="button" class="btn btn" id="custcontinue" onclick="loadServices();" value="Search">-->
                                             </div>
                                         </div>
                                         <div class="form-group required">
@@ -248,12 +242,11 @@
                             </div>
                             <!--Service View Main Panel-->
 
-
                             <!--Customer Service Loader-->
                             <div class="col-sm-12">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12" id="installment_result_panel">
                                             <table class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
@@ -300,60 +293,6 @@
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">5</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">6</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">7</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">8</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">9</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr><tr>
-                                                        <th scope="row">10</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr><tr>
-                                                        <th scope="row">11</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">12</th>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>

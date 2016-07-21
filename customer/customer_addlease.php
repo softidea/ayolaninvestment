@@ -402,7 +402,7 @@ else{
                                         </div>
                                         <div class="form-group required">
                                             <label class="control-label">Vehicle Pre Code:</label>
-                                            <select name="vehicle_code" id="v_code" class="form-control" required onchange="showDetails();">
+                                            <select name="v_code" id="v_code" class="form-control" required onchange="showDetails();">
                                                 <option value="0">~~Select Vehicle Code~~</option>
                                             </select>
                                         </div>
