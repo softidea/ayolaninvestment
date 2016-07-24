@@ -133,6 +133,7 @@ $current_date = date("Y-m-d");
                         else
                         {
                             //alert(xmlhttp.responseText);
+                            check();
                             document.getElementById('tbl_installment_body').innerHTML = "";
                             document.getElementById('tbl_installment_body').innerHTML = xmlhttp.responseText;
                         }
@@ -155,17 +156,44 @@ $current_date = date("Y-m-d");
                 xmlhttp.onreadystatechange = function () {
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
                     {
-                       alert(xmlhttp.responseText);
-                       var res_value=xmlhttp.responseText;
-                       var res_arr= res_value.split("#");
-                       document.getElementById('payable_date').value=res_arr[0];
-                       document.getElementById('payble_installment').value=res_arr[1]+".00";
+                        alert(xmlhttp.responseText);
+                        var res_value = xmlhttp.responseText;
+                        var res_arr = res_value.split("#");
+                        document.getElementById('payble_installment').value = res_arr[1];
+                        document.getElementById('payable_date').value = res_arr[0];
                     }
                 }
                 xmlhttp.open("GET", "../controller/co_load_installment_customer.php?sno_begin_ins=" + serviceno, true);
                 xmlhttp.send();
-                
-            }</script>
+
+            }
+        </script>
+        <script type="text/javascript">
+            function saveInstallment() {
+                var installment = document.getElementById('payble_installment').value;
+                var payment = document.getElementById('payment_submit').value;
+                var paybaledate = document.getElementById('payable_date').value;
+                var paiddate = document.getElementById('paid_date').value;
+                var serno = document.getElementById('service_combo').value;
+                 
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                    {
+                        alert(xmlhttp.responseText);
+                        
+                    }
+                }
+                xmlhttp.open("GET", "../controller/co_load_installment_customer.php?installment=" + installment+"&payment="+payment+"&payabledate="+paybaledate+"&paiddate="+paiddate+"&serno="+serno+"&saveinstallment="+installment, true);
+                xmlhttp.send();
+
+            }
+        </script>
     </head>
     <body>
         <?php include '../assets/include/navigation_bar.php'; ?>
