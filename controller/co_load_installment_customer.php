@@ -106,30 +106,76 @@ if ($sno_begin_ins != "" && $sno_begin_ins != null) {
             $service_date = $row['ser_date'];
 
             list($year, $month, $date) = explode("-", $service_date);
-            $fix_date=  intval($date);
-            $fix_month=  intval($month);
-            
-            if ($fix_date>0 && $fix_date<=5) {
-                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '5';
-                echo $installment_date . "#" . $installment;
-            } else if ($fix_date>5 && $fix_date<=10) {
-                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '10';
-                echo $installment_date . "#" . $installment;
-            } else if ($fix_date>10 && $fix_date<=15) {
-                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '15';
-                echo $installment_date . "#" . $installment;
-            } else if ($fix_date>15 && $fix_date<=20) {
-                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '20';
-                echo $installment_date . "#" . $installment;
-            } else if ($fix_date>20 && $fix_date<=25) {
-                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '25';
-                echo $installment_date . "#" . $installment;
-            } else if ($fix_date>25 && $fix_date<=31) {
-                $installment_date = $year . "-" . ($fix_month + 1) . "-" . '25';
-                echo $installment_date . "#" . $installment;
+            $fix_date = intval($date);
+
+            date_default_timezone_set('Asia/Colombo');
+            $paid_date = date("Y-m-d");
+
+
+            list($current_year, $current_month, $current_date) = explode("-", $paid_date);
+            if ($year == $current_year) {
+
+                if ($month == $current_month) {
+                    if ($date == $current_date) {
+                        if ($fix_date > 0 && $fix_date <= 5) {
+                            $installment_date = $year . "-" . ($month + 1) . "-" . '5';
+                            echo $installment_date . "#" . $installment;
+                        } else if ($fix_date > 5 && $fix_date <= 10) {
+                            $installment_date = $year . "-" . ($month + 1) . "-" . '10';
+                            echo $installment_date . "#" . $installment;
+                        } else if ($fix_date > 10 && $fix_date <= 15) {
+                            $installment_date = $year . "-" . ($month + 1) . "-" . '15';
+                            echo $installment_date . "#" . $installment;
+                        } else if ($fix_date > 15 && $fix_date <= 20) {
+                            $installment_date = $year . "-" . ($month + 1) . "-" . '20';
+                            echo $installment_date . "#" . $installment;
+                        } else if ($fix_date > 20 && $fix_date <= 25) {
+                            $installment_date = $year . "-" . ($month + 1) . "-" . '25';
+                            echo $installment_date . "#" . $installment;
+                        } else if ($fix_date > 25 && $fix_date <= 31) {
+                            $installment_date = $year . "-" . ($month + 1) . "-" . '25';
+                            echo $installment_date . "#" . $installment;
+                        }
+                    } else {
+                        if ($current_date > $date) {
+                            $val = $current_date - $date;
+                            if ($val < 7) {
+                                if ($fix_date > 0 && $fix_date <= 5) {
+                                    $installment_date = $year . "-" . ($month + 1) . "-" . '5';
+                                    echo $installment_date . "#" . $installment;
+                                } else if ($fix_date > 5 && $fix_date <= 10) {
+                                    $installment_date = $year . "-" . ($month + 1) . "-" . '10';
+                                    echo $installment_date . "#" . $installment;
+                                } else if ($fix_date > 10 && $fix_date <= 15) {
+                                    $installment_date = $year . "-" . ($month + 1) . "-" . '15';
+                                    echo $installment_date . "#" . $installment;
+                                } else if ($fix_date > 15 && $fix_date <= 20) {
+                                    $installment_date = $year . "-" . ($month + 1) . "-" . '20';
+                                    echo $installment_date . "#" . $installment;
+                                } else if ($fix_date > 20 && $fix_date <= 25) {
+                                    $installment_date = $year . "-" . ($month + 1) . "-" . '25';
+                                    echo $installment_date . "#" . $installment;
+                                } else if ($fix_date > 25 && $fix_date <= 31) {
+                                    $installment_date = $year . "-" . ($month + 1) . "-" . '25';
+                                    echo $installment_date . "#" . $installment;
+                                }
+                            } else if ($val > 7) {
+                                if($val<14){
+                                    $interest=($installment*5/100)+$installment;
+                                    echo $interest;
+                                }
+                            }
+                        }
+                    }
+                } else
+                    if () {
+                    
+                }
+            } else
+                if () {
+                
             }
         }
     }
-}
-    
+}  
 //loading service installments

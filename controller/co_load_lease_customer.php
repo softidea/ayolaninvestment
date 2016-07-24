@@ -31,7 +31,9 @@ if($payment!="" && $period!=""){
     
     $installment=((floatval($payment)/intval($period))+((3.96/100)*floatval($payment)));
     
-    echo number_format($installment+0.5, -10); 
+    //echo number_format($installment+0.5, -10); 
+    $vals= number_format($installment+0.5, -10); 
+    echo  str_replace(",","",$vals);
     
 }
 //setting the service installment
