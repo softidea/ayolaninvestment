@@ -90,7 +90,6 @@ $cus_daily_loan_account_no = "";
 
 
 if (isset($_POST['customer_continue'])) {
-    echo "inner";
     $cus_name = $_SESSION['cus_name'] = filter_input(INPUT_POST, 'cus_name');
     $cus_address = $_SESSION['cus_address'] = filter_input(INPUT_POST, 'cus_address');
     $cus_tp = $_SESSION['cus_tp'] = filter_input(INPUT_POST, 'cus_tp');
