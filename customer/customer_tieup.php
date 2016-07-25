@@ -156,7 +156,6 @@
                     xmlhttp.send();
                 }
             }
-
             function loadServiceGurantors(value) {
                 if (value !== "" && value !== null) {
                     if (window.XMLHttpRequest) {

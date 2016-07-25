@@ -132,10 +132,11 @@ $current_date = date("Y-m-d");
                         }
                         else
                         {
-                            //alert(xmlhttp.responseText);
-                            check();
+                            alert(xmlhttp.responseText);
+
                             document.getElementById('tbl_installment_body').innerHTML = "";
                             document.getElementById('tbl_installment_body').innerHTML = xmlhttp.responseText;
+                            check();
                         }
                     }
                 }
@@ -175,7 +176,7 @@ $current_date = date("Y-m-d");
                 var paybaledate = document.getElementById('payable_date').value;
                 var paiddate = document.getElementById('paid_date').value;
                 var serno = document.getElementById('service_combo').value;
-                 
+
                 if (window.XMLHttpRequest) {
                     // code for IE7+, Firefox, Chrome, Opera, Safari
                     xmlhttp = new XMLHttpRequest();
@@ -186,10 +187,10 @@ $current_date = date("Y-m-d");
                     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
                     {
                         alert(xmlhttp.responseText);
-                        
+
                     }
                 }
-                xmlhttp.open("GET", "../controller/co_load_installment_customer.php?installment=" + installment+"&payment="+payment+"&payabledate="+paybaledate+"&paiddate="+paiddate+"&serno="+serno+"&saveinstallment="+installment, true);
+                xmlhttp.open("GET", "../controller/co_load_installment_customer.php?installment=" + installment + "&payment=" + payment + "&payabledate=" + paybaledate + "&paiddate=" + paiddate + "&serno=" + serno + "&saveinstallment=" + installment, true);
                 xmlhttp.send();
 
             }
@@ -209,39 +210,39 @@ $current_date = date("Y-m-d");
                         <div class="panel-body" style="background-color: #FAFAFA;">
                             <div class="col-sm-6">
                                 <fieldset id="account">
-                                    <legend>Customer Details</legend>
-                                    <div class="form-group required">
-                                        <label class="control-label">Customer NIC:</label>
-                                        <div class="form-inline required">
-                                            <input type="text"  name="cus_nic" id="cus_nic" placeholder="NIC" class="form-control" style="width:85%;text-transform: uppercase;" maxlength="10" required/>
-                                            <input type="button" class="btn btn" id="custcontinue" value="Search" onclick="loadInstallmentCustomer();">
+                                        <legend>Customer Details</legend>
+                                        <div class="form-group required">
+                                            <label class="control-label">Customer NIC:</label>
+                                            <div class="form-inline required">
+                                                <input type="text"  name="cus_nic" id="cus_nic" placeholder="NIC" class="form-control" style="width:85%;text-transform: uppercase;" maxlength="10" required/>
+                                                <input type="button" class="btn btn" id="custcontinue" value="Search" onclick="loadInstallmentCustomer();">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label">Customer Name:</label>
-                                            <input type="text"  name="cus_name" id="cus_name" placeholder="Customer Name" class="form-control" required readonly/>
+                                            <div class="form-group required">
+                                                <label class="control-label">Customer Name:</label>
+                                                <input type="text"  name="cus_name" id="cus_name" placeholder="Customer Name" class="form-control" required readonly/>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label">Customer TP:</label>
-                                            <input type="text"  name="cus_tp" id="cus_tp" placeholder="Customer Telephone" class="form-control" required readonly/>
+                                            <div class="form-group required">
+                                                <label class="control-label">Customer TP:</label>
+                                                <input type="text"  name="cus_tp" id="cus_tp" placeholder="Customer Telephone" class="form-control" required readonly/>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label">Customer Address:</label>
-                                            <input type="text" name="cus_address" id="cus_address" placeholder="Customer Telephone" class="form-control" required readonly/>
+                                            <div class="form-group required">
+                                                <label class="control-label">Customer Address:</label>
+                                                <input type="text" name="cus_address" id="cus_address" placeholder="Customer Telephone" class="form-control" required readonly/>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label">Registered Date:</label>
-                                            <input type="text"  name="cus_reg_date" id="cus_reg_date" placeholder="Registered Date" class="form-control" required readonly/>
+                                            <div class="form-group required">
+                                                <label class="control-label">Registered Date:</label>
+                                                <input type="text"  name="cus_reg_date" id="cus_reg_date" placeholder="Registered Date" class="form-control" required readonly/>
+                                            </div>
                                         </div>
-                                    </div>
                                 </fieldset>
                             </div>
                             <div class="col-sm-6">
@@ -318,170 +319,169 @@ $current_date = date("Y-m-d");
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="container">
-                                                <ul class="nav nav-tabs" style="width: 1000px;">
-                                                    <li class="active"><a data-toggle="tab" href="#home">Add New</a></li>
-                                                    <li><a data-toggle="tab" href="#menu1">Edit</a></li>
-                                                    <li><a data-toggle="tab" href="#menu2">View</a></li>
-                                                    <li><a data-toggle="tab" href="#menu3">Settlement</a></li>
-                                                </ul>
+                                    <div class="col-sm-6">
+                                        <div class="container">
+                                            <ul class="nav nav-tabs" style="width: 1000px;">
+                                                <li class="active"><a data-toggle="tab" href="#home">Add New</a></li>
+                                                <li><a data-toggle="tab" href="#menu1">Edit</a></li>
+                                                <li><a data-toggle="tab" href="#menu2">View</a></li>
+                                                <li><a data-toggle="tab" href="#menu3">Settlement</a></li>
+                                            </ul>
 
-                                                <div class="tab-content">
-                                                    <div id="home" class="tab-pane fade in active">
-                                                        <h3>Add New Installment Here</h3>
-                                                        <p>New Installment available for the current service , Please add new installment</p>
-                                                        <div class="col-sm-3">
+                                            <div class="tab-content">
+                                                <div id="home" class="tab-pane fade in active">
+                                                    <h3>Add New Installment Here</h3>
+                                                    <p>New Installment available for the current service , Please add new installment</p>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group required">
                                                             <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label">Payable Installment:</label>
-                                                                    <input type="text" readonly name="payble_installment" id="payble_installment" placeholder="Payable Installment" class="form-control" required/>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button"  class="btn btn" id="cservicebtn" onclick="saveInstallment();">Add Installment</button>
-                                                        </div>
-                                                        <div class="col-sm-3">
-                                                            <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label">Payment:</label>
-                                                                    <input type="text" name="payment_submit" id="payment_submit" placeholder="Payment" class="form-control" required/>
-                                                                </div>
+                                                                <label class="control-label">Payable Installment:</label>
+                                                                <input type="text" readonly name="payble_installment" id="payble_installment" placeholder="Payable Installment" class="form-control" required/>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-2">
+                                                        <button type="button"  class="btn btn" id="cservicebtn" onclick="saveInstallment();">Add Installment</button>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group required">
                                                             <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label">Payable Date:</label>
-                                                                    <input type="text" readonly name="payable_date" id="payable_date" placeholder="Payable Date" class="form-control" required/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-2">
-                                                            <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label">Paid Date:</label>
-                                                                    <input type="date" name="paid_date" id="paid_date" value="<?php echo $current_date; ?>" placeholder="Paid Date" class="form-control" required/>
-                                                                </div>
+                                                                <label class="control-label">Payment:</label>
+                                                                <input type="text" name="payment_submit" id="payment_submit" placeholder="Payment" class="form-control" required/>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="menu1" class="tab-pane fade">
-                                                        <h3>Edit Installments Here</h3>
-                                                        <p>You can edit the last installment of the above service</p>
-                                                        <div class="col-sm-3">
+                                                    <div class="col-sm-2">
+                                                        <div class="form-group required">
                                                             <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label">Payable Installment:</label>
-                                                                    <input type="text" disabled name="fname" id="fname" value="5736.00" placeholder="Payable Installment" id="input-email" class="form-control" required/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-3">
-                                                            <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Paid Installment:</label>
-                                                                    <input type="text" disabled name="fname" id="fname" value="5780.00" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-3">
-                                                            <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Payment:</label>
-                                                                    <input type="text" name="fname" id="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
-                                                                <button type="submit"  class="btn btn" id="cservicebtn">Update Installment</button>
+                                                                <label class="control-label">Payable Date:</label>
+                                                                <input type="text" readonly name="payable_date" id="payable_date" placeholder="Payable Date" class="form-control" required/>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="menu2" class="tab-pane fade">
-                                                        <h3>View Installment Information Here</h3>
-                                                        <p>Total Service Installments ad due payments available here</p>
-                                                        <div class="col-sm-3">
+                                                    <div class="col-sm-2">
+                                                        <div class="form-group required">
                                                             <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Installment:</label>
-                                                                    <input type="text" name="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Next Installment Date:</label>
-                                                                    <input type="text" name="fname" value="2016-10-10" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
+                                                                <label class="control-label">Paid Date:</label>
+                                                                <input type="date" name="paid_date" id="paid_date" value="<?php echo $current_date; ?>" placeholder="Paid Date" class="form-control" required/>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                    </div>
+                                                </div>
+                                                <div id="menu1" class="tab-pane fade">
+                                                    <h3>Edit Installments Here</h3>
+                                                    <p>You can edit the last installment of the above service</p>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group required">
                                                             <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Total Customer Due:</label>
-                                                                    <input type="text" name="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Next Installment:</label>
-                                                                    <input type="text" name="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
+                                                                <label class="control-label">Payable Installment:</label>
+                                                                <input type="text" disabled name="fname" id="fname" value="5736.00" placeholder="Payable Installment" id="input-email" class="form-control" required/>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group required">
                                                             <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Total Company Due:</label>
-                                                                    <input type="text" name="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Total Payable:</label>
-                                                                    <input type="text" name="fname" value="35000.00" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
+                                                                <label class="control-label" for="input-email">Paid Installment:</label>
+                                                                <input type="text" disabled name="fname" id="fname" value="5780.00" placeholder="Payment" id="input-email" class="form-control" required/>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group required">
+                                                            <div class="form-group required">
+                                                                <label class="control-label" for="input-email">Payment:</label>
+                                                                <input type="text" name="fname" id="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
+                                                            </div>
+                                                            <button type="submit"  class="btn btn" id="cservicebtn">Update Installment</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="menu2" class="tab-pane fade">
+                                                    <h3>View Installment Information Here</h3>
+                                                    <p>Total Service Installments ad due payments available here</p>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group required">
+                                                            <div class="form-group required">
+                                                                <label class="control-label" for="input-email">Installment:</label>
+                                                                <input type="text" name="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <div class="form-group required">
+                                                                <label class="control-label" for="input-email">Next Installment Date:</label>
+                                                                <input type="text" name="fname" value="2016-10-10" placeholder="Payment" id="input-email" class="form-control" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group required">
+                                                            <div class="form-group required">
+                                                                <label class="control-label" for="input-email">Total Customer Due:</label>
+                                                                <input type="text" name="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <div class="form-group required">
+                                                                <label class="control-label" for="input-email">Next Installment:</label>
+                                                                <input type="text" name="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group required">
+                                                            <div class="form-group required">
+                                                                <label class="control-label" for="input-email">Total Company Due:</label>
+                                                                <input type="text" name="fname" value="00.00" placeholder="Payment" id="input-email" class="form-control" required/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                            <div class="form-group required">
+                                                                <label class="control-label" for="input-email">Total Payable:</label>
+                                                                <input type="text" name="fname" value="35000.00" placeholder="Payment" id="input-email" class="form-control" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
+                                                </div>
+                                                <div id="menu3" class="tab-pane fade">
+                                                    <h3>Settlement of the Loan Payment</h3>
+                                                    <p>Service Settlement can be use minimum more than 5 installments(months) available</p>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group required">
+                                                            <div class="form-group required">
+                                                                <label class="control-label" for="input-email">Total Payable Installments:</label>
+                                                                <input type="text" disabled name="fname" value="10" placeholder="Payment" id="input-email" class="form-control" required/>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div id="menu3" class="tab-pane fade">
-                                                        <h3>Settlement of the Loan Payment</h3>
-                                                        <p>Service Settlement can be use minimum more than 5 installments(months) available</p>
-                                                        <div class="col-md-3">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group required">
                                                             <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Total Payable Installments:</label>
-                                                                    <input type="text" disabled name="fname" value="10" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
+                                                                <label class="control-label" for="input-email">Total Payable:</label>
+                                                                <input type="text" disabled name="fname" value="35000.00" placeholder="Payment" id="input-email" class="form-control" required/>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group required">
                                                             <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Total Payable:</label>
-                                                                    <input type="text" disabled name="fname" value="35000.00" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
+                                                                <label class="control-label" for="input-email">Payment:</label>
+                                                                <input type="text" name="fname" value="35000.00" placeholder="Payment" id="input-email" class="form-control" required/>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="form-group required">
                                                             <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <label class="control-label" for="input-email">Payment:</label>
-                                                                    <input type="text" name="fname" value="35000.00" placeholder="Payment" id="input-email" class="form-control" required/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group required">
-                                                                <div class="form-group required">
-                                                                    <button type="submit"  class="btn btn" id="cservicebtn">Settle Loan</button>
-                                                                </div>
+                                                                <button type="submit"  class="btn btn" id="cservicebtn">Settle Loan</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input type="button" class="btn btn" id="custcontinue_print" value="Print">
-                                                <input type="button" class="btn btn" id="custcontinue_pdf" style="margin-right: 8px;" onclick="test();" value="Save as PDF">
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="button" class="btn btn" id="custcontinue_print" value="Print" onclick="PrintPreview();">
+                                            <input type="button" class="btn btn" id="custcontinue_pdf" style="margin-right: 8px;" onclick="PrintDoc();" value="Save as PDF">
                                         </div>
                                     </div>
                                 </div>
@@ -491,12 +491,35 @@ $current_date = date("Y-m-d");
                 </div>
             </div>
         </div>
-        <!--Customer Service Loader-->
+    </div>
+    <!--Customer Service Loader-->
 
-        <?php include '../assets/include/footer.php'; ?>
-    </body>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="http://bootsnipp.com/dist/scripts.min.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <?php include '../assets/include/footer.php'; ?>
+</body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="http://bootsnipp.com/dist/scripts.min.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script type="text/javascript">
+                                                /*--This JavaScript method for Print command--*/
+                                                function PrintDoc() {
+                                                    var toPrint = document.getElementById('printarea');
+                                                    var popupWin = window.open('', '_blank', 'width=1024,height=600,location=no,left=200px');
+                                                    popupWin.document.open();
+                                                    popupWin.document.write('<html><title>::Preview::</title><link rel="stylesheet" type="text/css" href="" /></head><body onload="window.print()">')
+                                                    popupWin.document.write(toPrint.innerHTML);
+                                                    popupWin.document.write('</html>');
+                                                    popupWin.document.close();
+                                                }
+                                                /*--This JavaScript method for Print Preview command--*/
+                                                function PrintPreview() {
+                                                    var toPrint = document.getElementById('printarea');
+                                                    var popupWin = window.open('', '_blank', 'width=1024,height=600,location=no,left=200px');
+                                                    popupWin.document.open();
+                                                    popupWin.document.write('<html><title>::Print Preview::</title><link rel="stylesheet" type="text/css" href="" media="screen"/></head><body">')
+                                                    popupWin.document.write(toPrint.innerHTML);
+                                                    popupWin.document.write('</html>');
+                                                    popupWin.document.close();
+                                                }
+</script>
 </html>

@@ -2,7 +2,6 @@
 
 require '../db/newDB.php';
 
-
 $customer_nic = filter_input(INPUT_GET, 'cus_nic');
 $customer_tp = filter_input(INPUT_GET, 'cus_tp');
 $c_s_nic = filter_input(INPUT_GET, 'c_s_nic');
