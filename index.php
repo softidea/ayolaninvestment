@@ -65,7 +65,6 @@ session_start();
                                         <a href="controller/user_forgetPassword.php"><p id="para_forget">Did you forgot your password?</p></a>
 
                                     </div>
-
                                     <input type="submit" name="login_process" value="Login Here" class="btn" id='btn_login'/>
 
                                 </form>
