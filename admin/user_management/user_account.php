@@ -26,14 +26,14 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" id="panelheading">
-                            <h3 class="panel-title">Customer Service Information</h3>
+                            <h3 class="panel-title">Create New User Account</h3>
                         </div>
                         <div class="panel-body" style="background-color: #FAFAFA;">
                             <div class="col-sm-6">
                                 <fieldset id="account">
-                                    <legend>Customer Details</legend>
+                                    <legend>Basic Details</legend>
                                     <div class="form-group required">
-                                        <label class="control-label">Customer NIC:</label>
+                                        <label class="control-label">First Name:</label>
                                         <div class="form-inline required">
                                             <input type="text"  name="cus_nic" id="cus_nic" placeholder="NIC" class="form-control" style="width:85%;text-transform: uppercase;" maxlength="10" required/>
                                             <input type="button" class="btn btn" id="custcontinue" onclick="loadInstallmentCustomer();" value="Search">
@@ -42,25 +42,31 @@
 
                                     <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label">Customer Name:</label>
+                                            <label class="control-label">Last Name:</label>
                                             <input type="text"  name="cus_name" id="cus_name" placeholder="Customer Name" class="form-control" required readonly/>
                                         </div>
                                     </div>
                                     <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label">Customer TP:</label>
+                                            <label class="control-label">Telephone:</label>
                                             <input type="text"  name="cus_tp" id="cus_tp" placeholder="Customer Telephone" class="form-control" required readonly/>
                                         </div>
                                     </div>
                                     <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label">Customer Address:</label>
+                                            <label class="control-label">Username:</label>
                                             <input type="text" name="cus_address" id="cus_address" placeholder="Customer Telephone" class="form-control" required readonly/>
                                         </div>
                                     </div>
                                     <div class="form-group required">
                                         <div class="form-group required">
-                                            <label class="control-label">Registered Date:</label>
+                                            <label class="control-label">New Password:</label>
+                                            <input type="text"  name="cus_reg_date" id="cus_reg_date" placeholder="Registered Date" class="form-control" required readonly/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group required">
+                                        <div class="form-group required">
+                                            <label class="control-label">Confirm Password:</label>
                                             <input type="text"  name="cus_reg_date" id="cus_reg_date" placeholder="Registered Date" class="form-control" required readonly/>
                                         </div>
                                     </div>
@@ -69,12 +75,6 @@
                             <div class="col-sm-6">
                                 <div id="searchOptionPanel">
                                     <fieldset id="account">
-                                        <div class="form-group required" style="display: block;" id="service_combo_div">
-                                            <label class="control-label">Select Service:</label>
-                                            <select name="service_combo" id="service_combo" class="form-control" onchange="loadServiceDetails();">
-                                                <option value='0'>~~Select Service~~</option>
-                                            </select>
-                                        </div>
                                         <legend>Service Details</legend>
                                         <div class="form-group required" style="display: block;" id="service_text_div">
                                             <label class="control-label">Service No:</label>
