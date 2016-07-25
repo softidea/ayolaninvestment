@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -32,11 +35,6 @@
         if (mysqli_connect_errno()) {
             echo "Falied to Connect the Database" . mysqli_connect_error();
         }
-
-        date_default_timezone_set('Asia/Colombo');
-        $current_date = date("Y-m-d");
-        
-        
         ?>
         <!--Customer Panel Section-->
         <div class="container" style="margin-top: 80px;display: block;" id="one">
@@ -65,11 +63,11 @@
                                                 <button type="submit" name="search_buton"  id="cservicebtn" method="post" class="btn btn">Search</button>
                                             </div>
                                         </form>
-<?php
-if (isset($_POST['cbopayment'])) {
-    $com_vehi = $_POST['cbopayment'];
-}
-?>
+                                        <?php
+                                        if (isset($_POST['cbopayment'])) {
+                                            $com_vehi = $_POST['cbopayment'];
+                                        }
+                                        ?>
                                     </div>
 
                                 </fieldset>
@@ -79,12 +77,12 @@ if (isset($_POST['cbopayment'])) {
                                 <legend>Search Option 02</legend>
                                 <form method="post">
                                     <div class="form-group required">
-                                        <label class="control-label">Start Date:</label>
-                                        <input type="date" name="start_date" id="start_date" placeholder="Registration Date" value="<?php $current_date;?>" class="form-control"/>
+                                        <label class="control-label" for="input-email">Start Date:</label>
+                                        <input type="date" name="date1" id="fname" value="" placeholder="Registration Date" id="input-email" class="form-control"/>
                                     </div>
                                     <div class="form-group required">
-                                        <label class="control-label">End Here:</label>
-                                        <input type="date" name="end_date" id="end_date" placeholder="Search Here" value="<?php $current_date;?>" class="form-control" required/>
+                                        <label class="control-label" for="input-email">End Here:</label>
+                                        <input type="date" name="date2" id="fname" value="" placeholder="Search Here" id="input-email" class="form-control" required/>
                                         <br>
                                         <button type="submit" on name="search_date" id="cservicebtn" class="btn btn">Search</button>
                                     </div>
@@ -93,60 +91,62 @@ if (isset($_POST['cbopayment'])) {
 
 
                             <!--pagination for Customer View-->
-<?php
-global $conn;
-$sql_query = "";
+                            <?php
+                            global $conn;
+                            $sql_query = "";
 
-$records_per_page = 10;
-require 'Zebra_Pagination.php';
-$pagination = new Zebra_Pagination();
-if (isset($_POST['search_buton'])) {
-    if ($com_vehi == "sno") {
-        $sql_query = "SELECT SQL_CALC_FOUND_ROWS a.cus_id,a.cus_fullname,a.cus_nic,a.cus_address,a.cus_reg_date,a.cus_tp,b.ger_fullname,b.ger_nic FROM customer a LEFT JOIN ger b ON a.cus_nic=b.cus_nic INNER JOIN `service` c ON a.`cus_nic`=c.`cus_nic` ORDER BY a.cus_id WHERE c.`ser_number`='" . $_POST['fname'] . "' LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
-    } elseif ($com_vehi == "tp") {
-        $sql_query = "SELECT SQL_CALC_FOUND_ROWS a.cus_id,a.cus_fullname,a.cus_nic,a.cus_address,a.cus_reg_date,a.cus_tp,b.ger_fullname,b.ger_nic FROM customer a LEFT JOIN ger b ON a.cus_nic=b.cus_nic ORDER BY a.cus_id WHERE a.`cus_tp`='" . $_POST['fname'] . "' LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
-    } elseif ($com_vehi == "nic") {
-        $sql_query = "SELECT SQL_CALC_FOUND_ROWS a.cus_id,a.cus_fullname,a.cus_nic,a.cus_address,a.cus_reg_date,a.cus_tp,b.ger_fullname,b.ger_nic FROM customer a LEFT JOIN ger b ON a.cus_nic=b.cus_nic ORDER BY a.cus_id WHERE a.`cus_nic`='" . $_POST['fname'] . "' LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
-    }
-} elseif (isset($_POST['search_date'])) {
+                            $records_per_page = 10;
+                            require 'Zebra_Pagination.php';
+                            $pagination = new Zebra_Pagination();
+                            if (isset($_POST['search_buton'])) {
+                                if ($com_vehi == "sno") {
 
-    $sql_query = "SELECT SQL_CALC_FOUND_ROWS a.cus_id,a.cus_fullname,a.cus_nic,a.cus_address,a.cus_reg_date,a.cus_tp,b.ger_fullname,b.ger_nic FROM customer a LEFT JOIN ger b ON a.cus_nic=b.cus_nic ORDER BY a.cus_id WHERE a.`cus_reg_date` BETWEEN " . $_POST['date1'] . " AND " . $_POST['date2'] . " LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
-} else {
-    $sql_query = "SELECT SQL_CALC_FOUND_ROWS a.cus_id,a.cus_fullname,a.cus_nic,a.cus_address,a.cus_reg_date,a.cus_tp,b.ger_fullname,b.ger_nic FROM customer a LEFT JOIN ger b ON a.cus_nic=b.cus_nic ORDER BY a.cus_id LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
-}
+                                    $sql_query = "SELECT SQL_CALC_FOUND_ROWS a.cus_id,a.cus_fullname,a.cus_nic,a.cus_address,a.cus_reg_date,a.cus_tp FROM customer a INNER JOIN `service` c ON a.`cus_nic`=c.`cus_nic` WHERE c.`ser_number`='" . $_POST['fname'] . "' LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
+                                } elseif ($com_vehi == "tp") {
+                                    $sql_query = "SELECT SQL_CALC_FOUND_ROWS cus_id,cus_fullname,cus_nic,cus_address,cus_reg_date,cus_tp FROM customer WHERE `cus_tp`='" . $_POST['fname'] . "' LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
+                                } elseif ($com_vehi == "nic") {
+                                    $sql_query = "SELECT SQL_CALC_FOUND_ROWS cus_id,cus_fullname,cus_nic,cus_address,cus_reg_date,cus_tp FROM customer WHERE `cus_nic`='" . $_POST['fname'] . "' LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
+                                }
+                            } elseif (isset($_POST['search_date'])) {
 
-$result = mysqli_query($conn, $sql_query);
-$service_co = mysqli_num_rows($result);
-if (!($result)) {
-    die(mysql_error());
-}
-$rows = mysqli_fetch_assoc(mysqli_query($conn, 'SELECT FOUND_ROWS() AS rows'));
-$pagination->records($rows['rows']);
-$pagination->records_per_page($records_per_page);
-?>
+                                $sql_query = "SELECT SQL_CALC_FOUND_ROWS cus_id,cus_fullname,cus_nic,cus_address,cus_reg_date,cus_tp FROM customer WHERE `cus_reg_date` BETWEEN '" . $_POST['date1'] . "' AND '" . $_POST['date2'] . "' LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
+                            } else {
+                                $sql_query = "SELECT SQL_CALC_FOUND_ROWS cus_id,cus_fullname,cus_nic,cus_address,cus_reg_date,cus_tp FROM customer  ORDER BY cus_id LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . "," . $records_per_page;
+                            }
+                            $result = mysqli_query($conn, $sql_query);
+                            $service_co = mysqli_num_rows($result);
+                            if (!($result)) {
+
+                                // stop execution and display error message
+                                die(mysql_error());
+                            }
+                            $rows = mysqli_fetch_assoc(mysqli_query($conn, 'SELECT FOUND_ROWS() AS rows'));
+                            $pagination->records($rows['rows']);
+                            $pagination->records_per_page($records_per_page);
+                            ?>
 
                             <div class="col-sm-12">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
+
                                             <th>No</th>
                                             <th>Full Name</th>
                                             <th>NIC</th>
                                             <th>Permanent Address</th>
                                             <th>Registration Date</th>
                                             <th>Phone Number</th>
-                                            <th>Guarantor Name</th>
-                                            <th>Guarantor NIC</th>
                                             <th>View More</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php
-$index = 0;
-$i = 1;
-?>
-<?php while ($row = mysqli_fetch_assoc($result)): ?>
-                                            <tr<?php echo $index++ % 2 ? ' class="even"' : '' ?>>
+                                        <?php
+                                        $index = 0;
+                                        $i = 1;
+                                        ?>
+                                        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                                            <tr<?php echo $index++ % 2 ? ' class="even"' : '' ?> onClick = "readValues(this)">
+
 
                                                 <td><?php echo $row['cus_id'] ?></td>
                                                 <td><?php echo $row['cus_fullname'] ?></td>
@@ -154,13 +154,11 @@ $i = 1;
                                                 <td><?php echo $row['cus_address'] ?></td>
                                                 <td><?php echo $row['cus_reg_date'] ?></td>
                                                 <td><?php echo $row['cus_tp'] ?></td>
-                                                <td><?php echo $row['ger_fullname'] ?></td>
-                                                <td><?php echo $row['ger_nic'] ?></td>
-                                                <td><?php echo '<form method="post" action=#><button type="submit" name="view"  id="cservicebtn" method="post" class="btn btn">View</button></form>' ?></td>
+                                                <td><?php echo '<button type="submit" name="view"  id="cservicebtn" method="post" class="btn btn">View</button>' ?></td>
 
                                             </tr>
-    <?php $i++; ?>
-<?php endwhile ?>
+                                            <?php $i++; ?>
+                                        <?php endwhile ?>
                                     </tbody>
                                 </table>
                                 <div class="text-center">
@@ -172,12 +170,35 @@ $i = 1;
                                         <div class="form-inline">
                                             <button type="submit"  class="btn btn" id="cservicebtn">Save as PDF</button>
                                             <button type="submit"  class="btn btn" id="cservicebtn">Print</button>
+                                            <script>
+
+                                                var cel;
+                                                function readValues(x) {
+
+                                                    cel = x.cells[2].innerHTML;
+                                                    var cus_nic = cel;
+                                                    alert(cus_nic);
+                                                    window.location.href = "customer_updateinfo.php?nic=" + cus_nic;
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+
+                                                }
+
+
+                                            </script>                                           
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="panel panel-default">
                                         <div class="panel-body" style="height: 250px;">
+
+
 
                                         </div>
                                     </div>
@@ -190,30 +211,35 @@ $i = 1;
             </div>
         </div>
     </div>
+
     <!--Customer Panel Section-->
 
-<?php include '../assets/include/footer.php'; ?>
+    <?php include '../assets/include/footer.php'; ?>
 </body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="http://bootsnipp.com/dist/scripts.min.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
-                                            function setServiceOptionPanel()
-                                            {
-                                                var sp_value = document.getElementById('input-search-option').value;
-                                                if (sp_value == 'serviceno')
-                                                {
-                                                    document.getElementById('cboservice').disabled = false;
+    function setServiceOptionPanel()
+    {
+        var sp_value = document.getElementById('input-search-option').value;
+        if (sp_value == 'serviceno')
+        {
+            document.getElementById('cboservice').disabled = false;
 
-                                                    alert(sp_value);
-                                                }
-                                                else if (sp_value == 'cname' || sp_value == 'tp')
-                                                {
-                                                    document.getElementById('cboservice').selectedIndex = "0";
-                                                    document.getElementById('cboservice').disabled = true;
-                                                    alert(sp_value);
-                                                }
-                                            }
+            alert(sp_value);
+        }
+        else if (sp_value == 'cname' || sp_value == 'tp')
+        {
+            document.getElementById('cboservice').selectedIndex = "0";
+            document.getElementById('cboservice').disabled = true;
+            alert(sp_value);
+        }
+    }
+
+
+
 </script>
+
 </html>
